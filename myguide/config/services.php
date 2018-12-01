@@ -45,7 +45,7 @@ return [
     //facebook API aqui, cuidado com API keys publicas usando repositorios privados.
     'facebook' => [
         'client_id' => '536095636859778',
-        'client_secret' => '38d2fb5a6c844918e215d49a8f43ef50',
+        'client_secret' => 'ae55d07a018039efd23655bc3c2e5df7',
         'redirect' => 'http://localhost:8000/login/facebook/callback',
         ],
 
