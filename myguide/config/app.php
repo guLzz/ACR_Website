@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -177,15 +178,9 @@ return [
 
     ],
 
-    // providers+socialite for Login with facebook, falta inserir a parte da API que encontra-se diferente atualmente
-    /*
-    'providers' => [
-        // Other service providers...
+    
 
-        Laravel\Socialite\SocialiteServiceProvider::class,
-    ],
-
-    'Socialite' => Laravel\Socialite\Facades\Socialite::class,*/
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -233,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
