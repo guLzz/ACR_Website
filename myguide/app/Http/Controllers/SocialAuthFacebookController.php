@@ -4,38 +4,54 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Socialite;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use App\User;
+
+//use Illuminate\Http\Request;
+//use Socialite;
 
 class SocialAuthFacebookController extends Controller
 {
   /**
-   * Create a redirect method to facebook api.
-   *
-   * @return void
-   */
-    public function redirect()
+     * Redirect the user to the Facebook authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
     /**
-     * Return a callback method from facebook api.
+     * Obtain the user information from Facebook.
      *
-     * @return callback URL from facebook
+     * @return \Illuminate\Http\Response
      */
-    public function callback()
+    public function handleProviderCallback()
     {
-       
-    }
-    
-    public function redirectToProvider($social)
-    {
-      Socialite::driver($social)->redirect();
-    }
-    public function handleProviderCallback($social)
-    {
-     $user = Socialite::driver($social)->user();
+        $userSocial = Socialite::driver('facebook')->user();
+
+        //return $userSocial->name;
+        $findUser = User::where('email',$userSocial->email)->first();
+        
+        if ($findUser) 
+        {
+            Auth::login($findUser);
+            return 'old user';//debug
+        }
+        else
+        {
+            $user = new User;
+            $user->name = $userSocial->name;
+            $user->email = $userSocial->email;
+            $user->password = bcrypt(123456);
+            $user->save();
+            Auth::login($user);
+            return ('new user');//debug
+        }                
     }
 
 }
