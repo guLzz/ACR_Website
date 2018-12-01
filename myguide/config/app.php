@@ -177,6 +177,16 @@ return [
 
     ],
 
+    // providers+socialite for Login with facebook, falta inserir a parte da API que encontra-se diferente atualmente
+    /*
+    'providers' => [
+        // Other service providers...
+
+        Laravel\Socialite\SocialiteServiceProvider::class,
+    ],
+
+    'Socialite' => Laravel\Socialite\Facades\Socialite::class,*/
+
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -227,3 +237,5 @@ return [
     ],
 
 ];
+
+
