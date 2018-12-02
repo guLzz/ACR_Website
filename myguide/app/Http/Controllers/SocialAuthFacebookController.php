@@ -40,17 +40,18 @@ class SocialAuthFacebookController extends Controller
         if ($findUser) 
         {
             Auth::login($findUser);
-            return 'old user';//debug
+            return redirect('/home#');
         }
         else
         {
             $user = new User;
             $user->name = $userSocial->name;
             $user->email = $userSocial->email;
-            $user->password = bcrypt(123456);
+			$user->password = bcrypt(fgrdzs8vx569142);
+			$user->role = 'User';
             $user->save();
             Auth::login($user);
-            return ('new user');//debug
+            return redirect('/home#');
         }                
     }
 
