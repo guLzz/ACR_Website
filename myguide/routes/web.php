@@ -30,7 +30,7 @@ Route::get('/services/{event_type}/{id}/book', 'ServicesController@book')->name(
 Route::get('/reviews', 'ReviewsController@index')->name('reviews');
 
 //Services AboutUs
-Route::get('/about-us', 'AboutUsController@index')->name('aboutus');
+Route::get('/aboutus', 'AboutUsController@index')->name('aboutus');
 
 
 //Facebook Routes
