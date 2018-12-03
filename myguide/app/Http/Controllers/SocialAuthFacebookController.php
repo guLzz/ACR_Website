@@ -47,7 +47,7 @@ class SocialAuthFacebookController extends Controller
             $user = new User;
             $user->name = $userSocial->name;
             $user->email = $userSocial->email;
-			$user->password = bcrypt(fgrdzs8vx569142);
+			$user->password = bcrypt(123456);
 			$user->role = 'User';
             $user->save();
             Auth::login($user);

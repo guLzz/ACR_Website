@@ -26,11 +26,14 @@ Route::get('/services/{event_type}/{id}', 'ServicesController@infoEvent')->name(
 Route::get('/services/{event_type}/{id}/book', 'ServicesController@book')->name('book'); //reserva o evento respetivo
 
 
-//Services Reviews
+//Reviews Routes
 Route::get('/reviews', 'ReviewsController@index')->name('reviews');
 
-//Services AboutUs
+//AboutUs Routes
 Route::get('/aboutus', 'AboutUsController@index')->name('aboutus');
+
+//Gallery Routes
+Route::get('/gallery', 'GalleryController@index')->name('gallery');
 
 
 //Facebook Routes

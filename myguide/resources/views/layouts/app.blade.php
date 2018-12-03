@@ -25,7 +25,8 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/services') }}">Services</a>
 				<a class="navbar-brand" href="{{ url('/reviews') }}">Reviews</a>
-				<a class="navbar-brand" href="{{ url('/about-us') }}">AboutUs</a>
+                <a class="navbar-brand" href="{{ url('/gallery') }}">Gallery</a>
+				<a class="navbar-brand" href="{{ url('/aboutus') }}">AboutUs</a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
