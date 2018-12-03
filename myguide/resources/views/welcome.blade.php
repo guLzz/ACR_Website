@@ -87,6 +87,7 @@
                 <div class="links">
                     <a href="{{ url('/services') }}">Services</a>
                     <a href="{{ url('/reviews') }}">Reviews</a>
+                    <a href="{{ url('/gallery') }}">Gallery</a>
                     <a href="{{ url('/aboutus') }}">About Us</a>
                 </div>
             </div>
