@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    myguideMadeira
+                    <a href="{{ url('/home') }}">myguideMadeira</a>
                 </div>
 
                 <div class="links">
