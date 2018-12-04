@@ -10,4 +10,9 @@ class ServicesController extends Controller
     {
         return view('services');
     }
+
+    public function showEvents()
+    {
+        return view('services/{{getEventTypeName}}');
+    }
 }

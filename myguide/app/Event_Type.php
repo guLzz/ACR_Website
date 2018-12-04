@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event_Type extends Model
 {
-    //
+    public function getEventTypeName()
+    {
+        //return this->name;
+    }
 }
