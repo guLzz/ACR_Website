@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Services Routes
 Route::get('/services', 'ServicesController@index')->name('services');
+Route::get('/services/walks', 'ServicesController@showEvents');
 Route::get('/services/{{event_type_name}}/', 'ServicesController@showEvents');   //mostra eventos do tipo escolhido (lista)
 Route::get('/services/{event_type_name}/{id}', 'ServicesController@infoEvent'); //mostra mais informacoes sobre o evento selecionado
 Route::get('/services/{event_type_name}/{id}/book', 'ServicesController@book'); //reserva o evento respetivo

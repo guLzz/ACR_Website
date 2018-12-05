@@ -5,9 +5,9 @@
     <div>
         @foreach($events as $event)
             <li>
-                <img src="" alt="">
-                <h1>    </h1>
-                <p></p>
+                <img src="../something" >
+                <h1>  $event['title']  </h1>
+                <p> DESCRICAO </p>
                 @if(Auth::user->hasRole('User') || Auth::user->hasRole('Admin'))
                     <input type="button" value="Book Now">
             </li>

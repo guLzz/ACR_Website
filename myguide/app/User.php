@@ -7,15 +7,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
-{
-    
+{   
     /**
      * 
      * @return bool
      */
     public function hasRole($role)
     {
-        //return this->role == $role;
+        //return (this->role == $role);
     }
 
     use Notifiable;
