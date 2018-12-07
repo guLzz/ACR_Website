@@ -15,8 +15,11 @@ class CreateBundleTable extends Migration
     {
         Schema::create('bundle', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bundle_bundle_id')->references('bundle_id')->on('bundle_has_events');
             $table->string('name');
+            $table->float('price');
+            $table->integer('bundle_bundle_id')->references('bundle_id')->on('bundle_has_events');
+            $table->string('about');
+            $table->string('image');
             $table->timestamps();
         });
     }

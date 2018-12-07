@@ -23,6 +23,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+                @if($user = Auth::user())
+                    @if(Auth::user()->role == 'User' || Auth::user()->role == 'Admin')
+                        <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
+                    @endif
+                @endif
                 <a class="navbar-brand" href="{{ url('/services') }}">Services</a>
 				<a class="navbar-brand" href="{{ url('/reviews') }}">Reviews</a>
                 <a class="navbar-brand" href="{{ url('/gallery') }}">Gallery</a>

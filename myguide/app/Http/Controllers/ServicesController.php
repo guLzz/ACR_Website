@@ -11,9 +11,8 @@ class ServicesController extends Controller
         return view('services');
     }
 
-    public function showEvents()
+    public function showEvents($type)
     {
-        //$type = ;
-        return view('services/{{type}}');
+        return 'services'.$type;
     }
 }

@@ -14,7 +14,6 @@ class CreateBundleHasEventTable extends Migration
     public function up()
     {
         Schema::create('bundle_has_events', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('events_id')->references('id')->on('events');
             $table->integer('bundle_id');
             $table->timestamps();

@@ -8,14 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {   
-    /**
-     * 
-     * @return bool
-     */
-    public function hasRole($role)
-    {
-        //return (this->role == $role);
-    }
 
     use Notifiable;
 
@@ -36,5 +28,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
+
 
 }

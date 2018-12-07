@@ -17,14 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 //Services Routes
 Route::get('/services', 'ServicesController@index')->name('services');
-Route::get('/services/walks', 'ServicesController@showEvents');
-Route::get('/services/{{event_type_name}}/', 'ServicesController@showEvents');   //mostra eventos do tipo escolhido (lista)
-Route::get('/services/{event_type_name}/{id}', 'ServicesController@infoEvent'); //mostra mais informacoes sobre o evento selecionado
-Route::get('/services/{event_type_name}/{id}/book', 'ServicesController@book'); //reserva o evento respetivo
+Route::get('/services/{type?}', function($type){   
+    //return view(walks, ["type"=> $type] );
+    return view($type);
+});
+Route::get('/services/bundle', 'ServicesController@showBundle')->name('bundle');
+Route::get('/services/{event_type_name}/{id}', 'ServicesController@infoEvent')->name('{{id}}'); //mostra mais informacoes sobre o evento selecionado
+Route::get('/services/{event_type_name}/{id}/book', 'ServicesController@book')->name('book'); //reserva o evento respetivo
 
 
 //Reviews Routes
@@ -35,6 +36,9 @@ Route::get('/aboutus', 'AboutUsController@index')->name('aboutus');
 
 //Gallery Routes
 Route::get('/gallery', 'GalleryController@index')->name('gallery');
+
+//Home Routes
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 //Facebook Routes
