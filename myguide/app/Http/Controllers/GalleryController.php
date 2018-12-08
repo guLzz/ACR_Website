@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class GalleryController extends Controller
 {
     public function index()
     {
-        return view('gallery');
+		$images = DB::table('reviews')->get(); // query para a view usar
+        return view('gallery', ['images' => $images]);
     }
 }

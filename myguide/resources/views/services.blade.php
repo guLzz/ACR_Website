@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <div class = "image-line">
-        <a href="{{ url('/services/walks') }}"> <img src="../something" height="200" width="200" > Walks </a>
-        <a href="{{ url('/services/tours') }}"> <img src="../something" height="200" width="200"> Tours </a>
-        <a href="{{ url('/services/boat') }}"> <img src="../something" height="200" width="200"> Boat </a>
-        <a href="{{ url('/services/bundle') }}"> <img src="../something" height="200" width="200"> Bundle </a>
-    </div>
+	<div class = "image-line">
+		@foreach($types as $type)  <!--imprimir os eventos existentes junto com as suas imagens-->
+			<a href="{{ route('/services/events', [ 'type' => $item-> $type->type ])}}"> <img src="../{{$type->type}}" height="200" width="200" > {{$type->type}} </a>
+		@endforeach
+		<a href="{{ url('/services/bundle') }}"> <img src="../something" height="200" width="200"> Bundle </a>
+	</div>
 
 @endsection

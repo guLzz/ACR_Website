@@ -19,13 +19,15 @@ Auth::routes();
 
 //Services Routes
 Route::get('/services', 'ServicesController@index')->name('services');
-Route::get('/services/{type?}', function($type){   
-    //return view(walks, ["type"=> $type] );
-    return view($type);
-});
-Route::get('/services/bundle', 'ServicesController@showBundle')->name('bundle');
-Route::get('/services/{event_type_name}/{id}', 'ServicesController@infoEvent')->name('{{id}}'); //mostra mais informacoes sobre o evento selecionado
-Route::get('/services/{event_type_name}/{id}/book', 'ServicesController@book')->name('book'); //reserva o evento respetivo
+/*Route::get('/services/events/{type?}', function($type){   
+    return view($type, ["type"=> $type] );
+    //return view($type);
+});*/
+
+//Route::get('/services/events', 'ServicesController@showEvents');
+//Route::get('/services/bundle', 'ServicesController@showBundle')->name('bundle');
+//Route::get('/services/{event_type_name}/{id}', 'ServicesController@infoEvent')->name('{{id}}'); //mostra mais informacoes sobre o evento selecionado
+//Route::get('/services/{event_type_name}/{id}/book', 'ServicesController@book')->name('book'); //reserva o evento respetivo
 
 
 //Reviews Routes
