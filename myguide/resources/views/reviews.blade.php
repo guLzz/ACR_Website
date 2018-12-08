@@ -3,7 +3,7 @@
 @section('content')
     <div>
         @if($user = Auth::user())
-            @if(Auth::user()->role == 'User' || Auth::user()->role == 'Admin')
+            @if(Auth::user()->role == 'User')
                 <h1>Share your Thoughs</h1>
                 <button onclick = "uploadPic()" class = "my-button"> Upload </button>
                 <textarea id="text-box" style = "height:200px;width:500px;"> </textarea>
