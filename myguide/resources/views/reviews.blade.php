@@ -4,27 +4,29 @@
     <div>
         @if($user = Auth::user())
             @if(Auth::user()->role == 'User')
-                <h1>Share your Thoughs</h1>
-                <button onclick = "uploadPic()" class = "my-button"> Upload </button>
+                <h1>Share your Thoughts</h1>
+                <select name="" id=""> <!--seleciona o evento pretendido para avaliar-->
+					@foreach($events as $event)
+						<option value="{{$event->name}}">{{$event->name}}</option>
+					@endforeach	
+				</select>
+				<button onclick = "uploadPic()" class = "my-button"> Upload </button>
                 <textarea id="text-box" style = "height:200px;width:500px;"> </textarea>
                 <button onclick = "addReview()" class = "my-button"> Review </button>
+				<hr>
+				<br>
             @endif
         @endif
     </div>
-    <hr>
     <div>
-    <!--por o foreach aqui
-        <img src="vai buscar a tabela " height="200" width="200" class = "review-img">
-        <h3>data da review</h3>
-        <textarea readonly class = "textarea-readable">vai buscar o conteudo, fazer css depois</textarea>--> 
-
-		@foreach($reviews as $review)  <!--imprimir os eventos existentes junto com as suas imagens-->
-			<li>
-				<img src="../{{$review->pic}} " height="200" width="200" class = "review-img">
-				<h3>Date: {{$review->timestamps}}  Event: {{$review->events_name}}</h3>
-				<textarea readonly class = "textarea-readable"> {{$review->reviewtext}} </textarea>
-			</li>
-		@endforeach
-
+		<ul>
+			@foreach($reviews as $review)  
+				<li>
+					<h3>Date: {{$review->created_at}}  Event: {{$review->events_name}} User: {{$review->users_name}}</h3>
+					<img src="../{{$review->pic}} " height="200" width="200" class = "review-img">
+					<textarea readonly class = "textarea-readable"> {{$review->reviewtext}} </textarea>						
+				</li>
+			@endforeach
+		</ul>		
     </div>
 @endsection

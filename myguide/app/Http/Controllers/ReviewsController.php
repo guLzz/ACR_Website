@@ -10,6 +10,7 @@ class ReviewsController extends Controller
     public function index()
     {
 		$reviews = DB::table('reviews')->get(); // query para a view usar
-        return view('reviews', ['reviews' => $reviews]);
+		$events = DB::table('events')->get();
+        return view('reviews', ['reviews' => $reviews , 'events' => $events ]);
     }
 }

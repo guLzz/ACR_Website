@@ -16,8 +16,9 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('events_id')->references('id')->on('events');
-			$table->integer('events_name')->references('name')->on('events');
-            $table->integer('users_id')->references('id')->on('users');
+			$table->string('events_name')->references('name')->on('events');
+			$table->integer('users_id')->references('id')->on('users');
+			$table->string('users_name')->references('name')->on('users');
 			$table->string('reviewtext');
 			$table->string('pic');
             $table->timestamps();

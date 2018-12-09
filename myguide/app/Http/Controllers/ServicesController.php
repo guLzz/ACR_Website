@@ -15,8 +15,8 @@ class ServicesController extends Controller
 
 	public function showEvents($type)
 	{
-		$events = DB::table('events_type')->where('type', '=', $type)->get(); //query para a view utilizar para listar os eventos desse tipo
-    	return view('events', ['events' => $events]); 
+		$events = DB::table('events')->where('events_type_id', '=', $type)->get(); //query para a view utilizar para listar os eventos desse tipo
+    	return view::make('events', ['events' => $events]); 
 	}
 		
 }

@@ -6,6 +6,7 @@
             @if(Auth::user()->role == 'User' || Auth::user()->role == 'Admin')
                 <h1>Share your Experiences with the World!</h1>
                 <button onclick = "uploadPic()" class = "my-button"> Upload </button>
+				<button onclick = "addPic()"> Submit </button>
             @endif
         @endif
     </div>
