@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBundleHasEventTable extends Migration
+class CreateBundleHasEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class CreateBundleHasEventTable extends Migration
     public function up()
     {
         Schema::create('bundle_has_events', function (Blueprint $table) {
-            $table->integer('events_id')->references('id')->on('events');
+            $table->integer('events_id')->unsigned()->index();
+            $table->foreign('events_id')->references('id')->on('events')->onDelete('cascade');
             $table->integer('bundle_id');
             $table->timestamps();
         });

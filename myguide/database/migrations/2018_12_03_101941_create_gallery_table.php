@@ -16,7 +16,8 @@ class CreateGalleryTable extends Migration
         Schema::create('gallery', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('events_id')->references('id')->on('events');
+            $table->integer('events_id')->unsigned()->index();
+            $table->foreign('events_id')->references('id')->on('events')->onDelete('cascade');
             $table->timestamps();
         });
     }
