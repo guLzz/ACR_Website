@@ -10,7 +10,7 @@
 						<h1>  {{$event->name}}  </h1>
 						<h3> Max PAX: {{$event->nr_pax}} </h3>
 						<h3> Price: {{$event->price}} </h3>
-						<button onclick = "moreInfo()"> More Info </button> <!--View com mais info desse evento especifico-->
+						<a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a> <!--View com mais info desse evento especifico-->
 						<button onclick = "book()"> Book Now </button> <!--API DO PAYPAL-->
 					</li>
 				@endforeach

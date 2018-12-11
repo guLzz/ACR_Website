@@ -19,11 +19,13 @@ Auth::routes();
 
 //Services Routes
 Route::get('/services', 'ServicesController@index');
-//Route::get('/services/events', 'ServicesController@showEvents');
-Route::get('/services/events', function ($id){
-	$events = DB::table('events')->where('events_type_id', '=', $id)->get(); //query para a view utilizar para listar os eventos desse tipo    	
-	return view::make('events', ['events' => $events]); 
-});
+//Route::post('/services/','ServicesController@addType');
+Route::get('/services/{type}', 'ServicesController@showEvents');
+
+
+//Events Routes
+Route::get('/services/{type}/{id}', 'EventsController@index');
+//Route::post('/services/events/', 'ServicesController@addEvents');
 
 //Reviews Routes
 Route::get('/reviews', 'ReviewsController@index')->name('reviews');

@@ -17,7 +17,7 @@ class CreateBundleTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('price');
-            $table->integer('bundle_bundle_id')->references('bundle_id')->on('bundle_has_events');
+            $table->integer('bundle_bundle_id')->references('bundle_id')->on('bundle_has_events')->onDelete('cascade');
             $table->string('about');
             $table->string('image');
             $table->timestamps();

@@ -8,11 +8,7 @@ class Event extends Model
 {
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->belongstoMany('App\User','events_has_users');
     }
-
-    
-
-
 
 }

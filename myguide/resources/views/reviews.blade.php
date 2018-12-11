@@ -6,6 +6,7 @@
             @if(Auth::user()->role == 'User')
                 <h1>Share your Thoughts</h1>
                 <select name="" id=""> <!--seleciona o evento pretendido para avaliar-->
+					<option value=""selected="selected"> Choose Event</option>
 					@foreach($events as $event)
 						<option value="{{$event->name}}">{{$event->name}}</option>
 					@endforeach	
