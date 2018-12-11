@@ -24,7 +24,7 @@ class ServicesController extends Controller
 	public function addType(Request $request)
 	{
 		$type = new Event_Type;
-		$type->type = $request ->type; 
+		$type->type = $request->type; 
 		$type->save();
 		return redirect("/services");
 	}

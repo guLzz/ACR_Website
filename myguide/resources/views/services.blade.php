@@ -17,7 +17,7 @@
 			@endif
 		</div>
 		<div class = "image-line">
-			@foreach($types as $type)  <!--FALTA VER O URL!!!!-->
+			@foreach($types as $type)
 				<a href="services/{{$type->type}}"> <img src="../{{$type->type}}" height="200" width="200" > {{$type->type}} </a>
 			@endforeach
 			<a href="{{ url('/services/bundle') }}"> <img src="../something" height="200" width="200"> Bundle </a>

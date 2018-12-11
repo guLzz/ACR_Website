@@ -19,7 +19,7 @@ Auth::routes();
 
 //Services Routes
 Route::get('/services', 'ServicesController@index');
-//Route::post('/services/','ServicesController@addType');
+Route::post('/services/{type}','ServicesController@addType');
 Route::get('/services/{type}', 'ServicesController@showEvents');
 
 

@@ -4,18 +4,20 @@
     <div>
         @if($user = Auth::user())
             @if(Auth::user()->role == 'User')
-                <h1>Share your Thoughts</h1>
-                <select name="" id=""> <!--seleciona o evento pretendido para avaliar-->
-					<option value=""selected="selected"> Choose Event</option>
-					@foreach($events as $event)
-						<option value="{{$event->name}}">{{$event->name}}</option>
-					@endforeach	
-				</select>
-				<button onclick = "uploadPic()" class = "my-button"> Upload </button>
-                <textarea id="text-box" style = "height:200px;width:500px;"> </textarea>
-                <button onclick = "addReview()" class = "my-button"> Review </button>
-				<hr>
-				<br>
+				@if(!empty($events))
+					<h1>Share your Thoughts</h1>
+					<select name="" id=""> <!--seleciona o evento pretendido para avaliar-->
+						<option value=""selected="selected"> Choose Event </option>
+						@foreach($events as $event)
+							<option value="{{$event->name}}">{{$event->name}}</option>
+						@endforeach
+					</select>
+					<button onclick = "uploadPic()" class = "my-button"> Upload </button>
+					<textarea id="text-box" style = "height:200px;width:500px;"> </textarea>
+					<button onclick = "addReview()" class = "my-button"> Review </button>
+					<hr>
+					<br>
+				@endif	
             @endif
         @endif
     </div>
