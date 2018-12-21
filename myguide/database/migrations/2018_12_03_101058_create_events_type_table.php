@@ -16,6 +16,7 @@ class CreateEventsTypeTable extends Migration
         Schema::create('events_type', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
+            $table->string('pic');
             $table->timestamps();
         });
     }

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,17 +18,17 @@ Auth::routes();
 
 //Services Routes
 Route::get('/services', 'ServicesController@index');
-Route::post('/services/{type}','ServicesController@addType');
+Route::post('/services/','ServicesController@addType');
 Route::get('/services/{type}', 'ServicesController@showEvents');
 
 
 //Events Routes
 Route::get('/services/{type}/{id}', 'EventsController@index');
-//Route::post('/services/events/', 'ServicesController@addEvents');
+Route::post('/services/{type}/', 'EventsController@addEvent');
 
 //Reviews Routes
 Route::get('/reviews', 'ReviewsController@index')->name('reviews');
-Route::post('/reviews','ReviewsController@addReview');
+Route::post('/reviews/','ReviewsController@addReview');
 
 //AboutUs Routes
 Route::get('/aboutus', 'AboutUsController@index')->name('aboutus');

@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('pic');
 			$table->string('name');
             $table->string('about');
-            $table->float('price');
+            $table->integer('price');
             $table->datetime('date');
             $table->integer('nr_pax');
             $table->timestamps();

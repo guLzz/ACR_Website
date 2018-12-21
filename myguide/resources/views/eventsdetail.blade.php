@@ -8,7 +8,7 @@
 				@foreach($events as $event)  <!--imprimir os eventos existentes junto com as suas imagens, !!!!!!falta apenas mostrar eventos depois da data atual!!!!-->
 					<li>
                         <h1>  {{$event->name}}  </h1>
-						<img src="../{{$event->pic}}" >
+						<img src="{{ asset('/images/events/'.$event->pic)}}" >
                         <h3>  {{$event->about}}  </h3>						
 						<h3> Max PAX: {{$event->nr_pax}} </h3>
 						<h3> Price: {{$event->price}} </h3>
