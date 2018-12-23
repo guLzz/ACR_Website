@@ -18,10 +18,24 @@ class Event extends Model
         'nr_pax'
     ];
 
-    public function users()
+    public function types()
     {
         return $this->belongsto(Event_Type::class);
     }
+    public function attend()
+    {
+        return $this->belongsToMany(User::class,'events_has_users');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function gallerys()
+    {
+        return $this->hasMany(Gallery::class);
+    }
+
+
 
 
 }

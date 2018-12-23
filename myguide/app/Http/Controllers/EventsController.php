@@ -12,12 +12,12 @@ class EventsController extends Controller
 	public function index($type,$id)
 	{
 		$events = DB::table('events')->where('id', '=', $id)->get(); //query para a view utilizar para listar os eventos desse tipo
-    	return view('eventsdetail', ['events' => $events]); 
+        $current_pax = DB::table('events_has_users')->where('events_id', '=', $id)->get();
+        return view('eventsdetail', ['events' => $events , 'current_pax' => $current_pax]);    
 	}
 
-		public function addEvent(Request $request,$type)
+	public function addEvent(Request $request)
 	{
-        $url = $request->path();
         $event = new Event;
         $event->events_type_id = $request->type_id;; //id da wildcard
         $event->events_type_type = $request->type_type;; //wildcard
@@ -32,5 +32,12 @@ class EventsController extends Controller
         $event->nr_pax = $request->nr_pax; 
         $event->save();
 		return redirect("/services/{$request->type_type}"); 
-	}
+    }
+    
+    public function bookNow(Request $request)
+    {
+        $book = Event::findOrFail($request->event_id);
+        book()->attend()->attach($request->event_id);
+        return redirect("/services/{$request->type_type}/{$request->event_id}");
+    }
 }

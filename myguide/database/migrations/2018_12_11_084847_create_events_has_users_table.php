@@ -14,6 +14,7 @@ class CreateEventsHasUsersTable extends Migration
     public function up()
     {
         Schema::create('events_has_users', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('events_id')->unsigned()->index();
             $table->foreign('events_id')->references('id')->on('events')->onDelete('cascade');
             $table->integer('users_id')->unsigned()->index();

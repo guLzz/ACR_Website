@@ -22,7 +22,7 @@ class CreateReviewsTable extends Migration
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('users_name')->references('name')->on('users')->onDelete('cascade');
 			$table->string('reviewtext');
-			$table->string('pic');
+			$table->string('pic')->default('noPic.png');
             $table->timestamps();
         });
     }

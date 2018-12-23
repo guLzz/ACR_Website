@@ -21,7 +21,7 @@
                         <textarea id="text-box" style = "height:200px;width:500px;" name = "about"> </textarea>
                         <br>
                         <p>Price:</p>
-                        <input type="number" name = "price">
+                        <input type="number" step="0.01" name = "price">
                         <br>
                         <p>Date:</p>
                         <input type="date" name = "date">
@@ -62,30 +62,12 @@
 						<img src="{{ asset('/images/events/'.$event->pic)}}" >
 						<h1>  {{$event->name}}  </h1>
 						<h3> Max PAX: {{$event->nr_pax}} </h3>
-						<h3> Price: {{$event->price}} </h3>
+						<h3> Price: {{$event->price}} $ </h3>
+                        <h3> Date: {{$event->date}} </h3>
 						<a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a> <!--View com mais info desse evento especifico-->
-						<button onclick = "book()"> Book Now </button> <!--API DO PAYPAL-->
 					</li>
 				@endforeach
 			</ul>			
-		</div>
-
-		<div>
-			<!--fazer formulario aqui para admin inserir mais eventos-->
-			@if($user = Auth::user())
-            	@if(Auth::user()->role == 'User')
-					<h2> Add new Event </h2>
-					<form method = "POST" action="/events/">
-						<button onclick = "uploadImage()"> Upload Image </button>
-						<input type="text"  id=""> <!--name-->
-						<textarea id="text-box" style = "height:200px;width:500px;"> </textarea> <!--about-->
-						<input type="text"  id=""> <!--price-->
-						<input type="text"  id=""> <!--nr_pax-->
-						<input type="datetime" name="" id=""><!--data--->
-						<button onclick = "addEvent()" type = "submit"> Add new </button>
-					</form>
-				@endif
-			@endif		
 		</div>
 	</div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use App\Review;
 
 class ReviewsController extends Controller
 {
@@ -29,10 +30,26 @@ class ReviewsController extends Controller
                     return view('reviews', ['reviews' => $reviews ]);
             }
             else
-            return view('reviews', ['reviews' => $reviews ]);
+                return view('reviews', ['reviews' => $reviews ]);
         }
-             
-        
         
     }
+
+
+    public function addReview(Request $request)
+	{
+        $user = Auth::user();
+        $review = new Review;
+        $review->events_id = $request->events_id;
+        $review->events_name = $request->events_name; 
+        $review->users_id = $user->id;
+        $review->users_name = $user->name; 
+        $review->reviewtext = $request->textbox;   
+        $file = $request->file('type_pic');
+        $filename= time().'-'.$file->getClientOriginalName();
+        $file = $file->move('../public/images/gallery',$filename);
+        $review->pic = $filename;
+		$review->save();
+		return redirect("/reviews/");
+	}
 }

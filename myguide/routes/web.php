@@ -24,7 +24,9 @@ Route::get('/services/{type}', 'ServicesController@showEvents');
 
 //Events Routes
 Route::get('/services/{type}/{id}', 'EventsController@index');
+Route::post('/services/{type}/{id}/', 'EventsController@bookNow');
 Route::post('/services/{type}/', 'EventsController@addEvent');
+
 
 //Reviews Routes
 Route::get('/reviews', 'ReviewsController@index')->name('reviews');
@@ -36,7 +38,7 @@ Route::post('/aboutus','AboutUsController@addInfo');
 
 //Gallery Routes
 Route::get('/gallery', 'GalleryController@index')->name('gallery');
-Route::post('/gallery','GalleryController@addPic');
+Route::post('/gallery/','GalleryController@addPic');
 
 //Home Routes
 Route::get('/home', 'HomeController@index')->name('home');
