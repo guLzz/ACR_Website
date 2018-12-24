@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use App\Review;
+use DateTime;
 
 class ReviewsController extends Controller
 {
     public function index()
-    {
+    {	
+		$now = new DateTime();
         $isUser = Auth::user();
         if (!$isUser) {
             $reviews = DB::table('reviews')->get();
@@ -20,9 +22,22 @@ class ReviewsController extends Controller
         {
             $user = Auth::user()->id;
 		    $reviews = DB::table('reviews')->get(); 
-            $events_user = DB::table('users_events')->where('user_id', '=', $user)->pluck('event_id');
-            if (count($events_user)) {
-                $events = DB::table('events')->where('id','=', $events_user)->get();
+            $events_user = DB::table('users_events')->where('user_id', '=', $user)->distinct()->pluck('event_id');
+			//return $events_user;
+			if (count($events_user)) {
+				$events = array();
+				foreach ($events_user as $value) {
+					$query = DB::table('events')
+						->where('id','=', $value)
+						->where('date', '<', $now)
+						->get();
+					if (!$query) {
+						array_push($events, $query);
+					}
+					
+				}
+				//return $events;
+				
                 if (count($events)) {
 					return view('reviews', ['reviews' => $reviews , 'events' => $events ]); //ver porque apenas retorna 1, same with gallery
 					//return $events;

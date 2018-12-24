@@ -6,18 +6,29 @@ use Illuminate\Http\Request;
 use App\Gallery;
 use DB;
 use Auth;
+use DateTime;
 
 class GalleryController extends Controller
 {
     public function index()
     {
+		$now = new DateTime();
         $user = Auth::user();
         $reviews = DB::table('reviews')->get(); // query para a view usar
         $images = DB::table('gallery')->get();
         if ($user) {
             $events_user = DB::table('users_events')->where('user_id', '=', $user->id)->pluck('event_id');
             if (count($events_user)) {
-                $events = DB::table('events')->where('id','=', $events_user)->get();
+                $events = array();
+				foreach ($events_user as $value) {
+					$query = DB::table('events')
+						->where('id','=', $value)
+						->where('date', '<', $now)
+						->get();
+					if (!$query) {
+						array_push($events, $query);
+					}	
+				}
                 if (count($events)) {
                     return view('gallery', ['images' => $images, 'reviews' => $reviews ,'events' => $events ]);
                 }
