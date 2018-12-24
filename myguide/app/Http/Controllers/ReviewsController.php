@@ -20,11 +20,12 @@ class ReviewsController extends Controller
         {
             $user = Auth::user()->id;
 		    $reviews = DB::table('reviews')->get(); 
-            $events_user = DB::table('events_has_users')->where('users_id', '=', $user)->pluck('events_id');
+            $events_user = DB::table('users_events')->where('user_id', '=', $user)->pluck('event_id');
             if (count($events_user)) {
                 $events = DB::table('events')->where('id','=', $events_user)->get();
                 if (count($events)) {
-                    return view('reviews', ['reviews' => $reviews , 'events' => $events ]);
+					return view('reviews', ['reviews' => $reviews , 'events' => $events ]); //ver porque apenas retorna 1, same with gallery
+					//return $events;
                 }
                 else
                     return view('reviews', ['reviews' => $reviews ]);
@@ -32,9 +33,7 @@ class ReviewsController extends Controller
             else
                 return view('reviews', ['reviews' => $reviews ]);
         }
-        
     }
-
 
     public function addReview(Request $request)
 	{

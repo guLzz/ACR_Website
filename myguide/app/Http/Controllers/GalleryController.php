@@ -15,7 +15,7 @@ class GalleryController extends Controller
         $reviews = DB::table('reviews')->get(); // query para a view usar
         $images = DB::table('gallery')->get();
         if ($user) {
-            $events_user = DB::table('events_has_users')->where('users_id', '=', $user->id)->pluck('events_id');
+            $events_user = DB::table('users_events')->where('user_id', '=', $user->id)->pluck('event_id');
             if (count($events_user)) {
                 $events = DB::table('events')->where('id','=', $events_user)->get();
                 if (count($events)) {

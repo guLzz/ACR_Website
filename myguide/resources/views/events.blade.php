@@ -57,14 +57,14 @@
         <hr>
 		<div>
 			<ul>
-				@foreach($events as $event)  <!--imprimir os eventos existentes junto com as suas imagens, !!!!!!falta apenas mostrar eventos depois da data atual!!!!-->
+				@foreach($events as $event)  
 					<li>
 						<img src="{{ asset('/images/events/'.$event->pic)}}" >
 						<h1>  {{$event->name}}  </h1>
 						<h3> Max PAX: {{$event->nr_pax}} </h3>
 						<h3> Price: {{$event->price}} $ </h3>
                         <h3> Date: {{$event->date}} </h3>
-						<a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a> <!--View com mais info desse evento especifico-->
+						<a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a> 
 					</li>
 				@endforeach
 			</ul>			

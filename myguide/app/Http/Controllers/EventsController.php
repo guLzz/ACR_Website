@@ -11,8 +11,9 @@ class EventsController extends Controller
 {
 	public function index($type,$id)
 	{
-		$events = DB::table('events')->where('id', '=', $id)->get(); //query para a view utilizar para listar os eventos desse tipo
-        $current_pax = DB::table('events_has_users')->where('events_id', '=', $id)->get();
+		$events = DB::table('events')->where('id', '=', $id)->get();
+		$max_pax = DB::table('events')->where('id', '=', $id)->pluck('nr_pax');
+		$current_pax = DB::table('users_events')->where('event_id', '=', $id)->get();
         return view('eventsdetail', ['events' => $events , 'current_pax' => $current_pax]);    
 	}
 
@@ -36,8 +37,13 @@ class EventsController extends Controller
     
     public function bookNow(Request $request)
     {
-        $book = Event::findOrFail($request->event_id);
-        book()->attend()->attach($request->event_id);
-        return redirect("/services/{$request->type_type}/{$request->event_id}");
+		$user = Auth::user();
+		if ($user) {
+			for ($i = 1; $i <= $request->number_pax; $i++) {
+				$event = Event::find($request->events_id);
+				$user->events()->attach($request->events_id);
+			}
+			return redirect("/services/{$request->type_type}/{$request->events_id}");
+		}		
     }
 }

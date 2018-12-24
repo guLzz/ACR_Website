@@ -34,7 +34,6 @@ Route::post('/reviews/','ReviewsController@addReview');
 
 //AboutUs Routes
 Route::get('/aboutus', 'AboutUsController@index')->name('aboutus');
-Route::post('/aboutus','AboutUsController@addInfo');
 
 //Gallery Routes
 Route::get('/gallery', 'GalleryController@index')->name('gallery');

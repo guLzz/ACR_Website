@@ -22,9 +22,9 @@ class Event extends Model
     {
         return $this->belongsto(Event_Type::class);
     }
-    public function attend()
+    public function users()
     {
-        return $this->belongsToMany(User::class,'events_has_users');
+        return $this->belongsToMany(User::class, 'users_events');
     }
     public function reviews()
     {
