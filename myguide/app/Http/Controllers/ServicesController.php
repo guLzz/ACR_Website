@@ -19,11 +19,10 @@ class ServicesController extends Controller
 	public function showEvents($type)
 	{
         $now = new DateTime();
-		//$events = DB::table('events')->where('events_type_type', '=', $type)->get(); //query para a view utilizar para listar os eventos desse tipo
-        //$events_live = DB::table('events')->where('date', '>', $now)->get();
         $events_type_live = DB::table('events')
                     ->where('events_type_type', '=', $type)
                     ->where('date', '>', $now)
+                    ->orderBy('date', 'ASC')
                     ->get();
         $type_id = DB::table('events_type')->where('type' ,'=', $type)->pluck('id')->first();
         $type_type = DB::table('events_type')->where('type' ,'=', $type)->pluck('type')->first();
@@ -40,6 +39,12 @@ class ServicesController extends Controller
         $type->pic = $filename;
 		$type->save();
 		return redirect("/services/");
-	}
+    }
+    
+    public function deleteType(Request $request)
+    {
+        DB::table('events_type')->delete($request->type_id);
+        return redirect("/services/");
+    }
 		
 }

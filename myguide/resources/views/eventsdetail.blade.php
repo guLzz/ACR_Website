@@ -7,6 +7,16 @@
 			<ul>
 				@foreach($events as $event)  
 					<li>
+                        @if($user = Auth::user())
+                            @if(Auth::user()->role == 'Admin')
+                                <form action="/services/{type}/{id}/delete/" method = "POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value ="{{csrf_token()}}">
+                                    <input type="hidden" name="event_id" value ="{{$event->id}}">
+                                    <input type="hidden" name="type_name" value = "{{$event->events_type_type}}">
+                                    <button type= "submit"> <img src="{{ asset('/images/types/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
+                                </form>
+                            @endif
+                        @endif 
                         <h1>  {{$event->name}}  </h1>
 						<img src="{{ asset('/images/events/'.$event->pic)}}" >
                         <h3>  {{$event->about}}  </h3>						

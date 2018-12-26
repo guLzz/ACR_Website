@@ -64,7 +64,7 @@
 						<h3> Max PAX: {{$event->nr_pax}} </h3>
 						<h3> Price: {{$event->price}} $ </h3>
                         <h3> Date: {{$event->date}} </h3>
-						<a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a> 
+						<a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a>
 					</li>
 				@endforeach
 			</ul>			

@@ -17,6 +17,7 @@ class GalleryController extends Controller
         $user = Auth::user();
         $reviews = DB::table('reviews')->get(); 
         $images = DB::table('gallery')->get();
+        $types = DB::table('events_type')->select('type','id')->get();
         if ($user) {
             $events_user = DB::table('users_events')->where('user_id', '=', $user->id)->distinct()->pluck('event_id');
             if (count($events_user)) {
@@ -32,17 +33,59 @@ class GalleryController extends Controller
 					}	
 				}
                 if (count($events)) {
-                    return view('gallery', ['images' => $images, 'reviews' => $reviews ,'events' => $events ]);
+                    return view('gallery', ['images' => $images, 'types' => $types ,'reviews' => $reviews ,'events' => $events ]);
                 }
                 else
-                    return view('gallery', ['images' => $images, 'reviews' => $reviews]);
+                    return view('gallery', ['images' => $images, 'types' => $types ,'reviews' => $reviews]);
             }
             else
-                return view('gallery', ['images' => $images, 'reviews' => $reviews]);
+                return view('gallery', ['images' => $images,'types' => $types , 'reviews' => $reviews]);
         }    
         else
-            return view('gallery', ['images' => $images, 'reviews' => $reviews]);
+            return view('gallery', ['images' => $images, 'types' => $types ,'reviews' => $reviews]);
     }
+
+
+    public function filterPics(Request $request)
+	{
+        $user = Auth::user();
+        $now = new DateTime();
+        $types = DB::table('events_type')->select('type','id')->get();
+        $eventsFilter = DB::table('events')->select('id')->where('events_type_id','=', $request->type_id)->pluck('id'); //ids dos eventos do tipo
+        
+        $images = array();
+        foreach ($eventsFilter as $key => $value) { //para cada id de evento add as imagens desses evento no array images
+            $auxquery = DB::table('gallery')->select('name')->where('events_id','=',$value)->get();
+            if (count($auxquery)) {
+                array_push($images, ...$auxquery);
+            }	
+        }
+
+        if ($user) {
+            $events_user = DB::table('users_events')->where('user_id', '=', $user->id)->distinct()->pluck('event_id');
+            if (count($events_user)) {
+				$events = array();
+				foreach ($events_user as $value) {
+					$query = DB::table('events')->select('id','name')
+						->where('id','=', $value)
+						->where('date', '<', $now)
+						->get();
+					if (count($query)) {
+						array_push($events, ...$query);
+					}	
+				}
+                if (count($events)) {
+                    return view('galleryfilter', ['types' => $types , 'images' => $images,'events' => $events ]);
+                }
+                else
+                    return view('galleryfilter', ['types' => $types, 'images' => $images]);
+            }
+            else
+                return view('galleryfilter', ['types' => $types ,'images' => $images]);
+        }    
+        else
+            return view('galleryfilter', ['types' => $types,'images' => $images]);
+	}
 
     public function addPic(Request $request)
 	{

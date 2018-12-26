@@ -46,4 +46,10 @@ class EventsController extends Controller
 			return redirect("/services/{$request->type_type}/{$request->events_id}");
 		}		
     }
+
+    public function deleteEvent(Request $request)
+    {
+        DB::table('events')->delete($request->event_id);
+        return redirect("/services/{$request->type_name}");
+    }
 }

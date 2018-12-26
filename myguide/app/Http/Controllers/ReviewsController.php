@@ -29,11 +29,11 @@ class ReviewsController extends Controller
 			$needreview = json_decode(json_encode($needreview),true);
 
 			if(count($needreview)){
-				$events = array();
+                $events = array();
 				foreach ($needreview as $key => $value) {
 					$query = DB::table('events')->select('id','name')
 						->where('id','=', $value['event_id'])
-						->where('date', '<', $now)
+						//->where('date', '<', $now)
 						->get();
 					if (count($query)) {
 						array_push($events, ...$query);
@@ -62,11 +62,18 @@ class ReviewsController extends Controller
         $review->users_id = $user->id;
         $review->users_name = $user->name; 
         $review->reviewtext = $request->textbox;   
-        $file = $request->file('type_pic');
-        $filename= time().'-'.$file->getClientOriginalName();
-        $file = $file->move('../public/images/gallery',$filename);
-        $review->pic = $filename;
-		$review->save();
+        $file = $request->hasFile('type_pic');
+        
+        if($file){
+            $file = $request->file('type_pic');
+            $filename= time().'-'.$file->getClientOriginalName();
+            $file = $file->move('../public/images/gallery',$filename);
+            $review->pic = $filename;
+        }
+        else
+            $review->pic = "noPic.png";
+        
+        $review->save();
 		return redirect("/reviews/");
 	}
 }

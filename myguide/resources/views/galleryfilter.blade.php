@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div>
         @if($user = Auth::user())
             @if(Auth::user()->role == 'User' || Auth::user()->role == 'Admin')
@@ -59,18 +60,9 @@
         </form>
     </div>
     <div>
-        <!--imagens pequenas, quando clicamos ampliam com hipotese de passar para a proxima-->
-        <!--for each para cobrir todas as imagens existentes
-        <img src="imagem pequena" onclick = "zoom()" height="200" width="200">-->
-
-		@foreach($reviews as $review)  <!--imprimir os eventos existentes junto com as suas imagens-->
-			<img src="{{ asset('/images/gallery/'.$review->pic)}}"  class="fancybox" height="200" width="200">
-		@endforeach
         @foreach($images as $image)
-            <img src="{{ asset('/images/gallery/'.$image->name)}}"  class="fancybox" height="200" width="200">
+            <img src="{{ asset('/images/gallery/'.$image->name)}}" class="fancybox" height="200" width="200">
         @endforeach
     </div>
-    <script>
-    
-    </script>
+
 @endsection

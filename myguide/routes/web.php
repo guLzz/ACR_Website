@@ -19,6 +19,7 @@ Auth::routes();
 //Services Routes
 Route::get('/services', 'ServicesController@index');
 Route::post('/services/','ServicesController@addType');
+Route::post('/services/delete', 'ServicesController@deleteType');
 Route::get('/services/{type}', 'ServicesController@showEvents');
 
 
@@ -26,6 +27,7 @@ Route::get('/services/{type}', 'ServicesController@showEvents');
 Route::get('/services/{type}/{id}', 'EventsController@index');
 Route::post('/services/{type}/{id}/', 'EventsController@bookNow');
 Route::post('/services/{type}/', 'EventsController@addEvent');
+Route::post('/services/{type}/{id}/delete/', 'EventsController@deleteEvent');
 
 
 //Reviews Routes
@@ -37,6 +39,7 @@ Route::get('/aboutus', 'AboutUsController@index')->name('aboutus');
 
 //Gallery Routes
 Route::get('/gallery', 'GalleryController@index')->name('gallery');
+Route::post('/gallery/filter/', 'GalleryController@filterPics');
 Route::post('/gallery/','GalleryController@addPic');
 
 //Home Routes

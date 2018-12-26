@@ -44,7 +44,16 @@
 		<div class = "image-line">
 			@foreach($types as $type)        
 			    <a href="services/{{$type->type}}"><img src="{{ asset('/images/types/'.$type->pic)}}" alt = "Can't Load" height="200" width="200" > {{$type->type}} </a>
-			@endforeach
+                @if($user = Auth::user())
+                    @if(Auth::user()->role == 'Admin')
+                        <form action="/services/delete/" method = "POST" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" value ="{{csrf_token()}}">
+                                <input type="hidden" name="type_id" value ="{{$type->id}}">
+                                <button type= "submit"> <img src="{{ asset('/images/types/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
+                        </form>
+                    @endif
+                @endif
+            @endforeach
 			<a href="{{ url('/services/bundle') }}"> <img src="{{ asset('/images/types/bundle.png')}}" height="200" width="200"> bundle </a>
 		</div>
 	</div>
