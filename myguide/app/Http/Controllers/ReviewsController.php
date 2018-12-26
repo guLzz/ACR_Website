@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\HTML;
 use Auth;
 use DB;
 use App\Review;
@@ -22,25 +23,26 @@ class ReviewsController extends Controller
         {
             $user = Auth::user()->id;
 		    $reviews = DB::table('reviews')->get(); 
-            $events_user = DB::table('users_events')->where('user_id', '=', $user)->distinct()->pluck('event_id');
-			//return $events_user;
-			if (count($events_user)) {
+			$query1 = DB::table('users_events')->select('event_id')->where('user_id','=',$user)->distinct()->get();
+			$query2 = DB::table('reviews')->select('events_id')->where('users_id','=',$user)->get();
+			$needreview = ($query1->diffKeys($query2))->all();
+			$needreview = json_decode(json_encode($needreview),true);
+
+			if(count($needreview)){
 				$events = array();
-				foreach ($events_user as $value) {
-					$query = DB::table('events')
-						->where('id','=', $value)
+				foreach ($needreview as $key => $value) {
+					$query = DB::table('events')->select('id','name')
+						->where('id','=', $value['event_id'])
 						->where('date', '<', $now)
 						->get();
-					if (!$query) {
-						array_push($events, $query);
+					if (count($query)) {
+						array_push($events, ...$query);
 					}
 					
 				}
-				//return $events;
 				
                 if (count($events)) {
-					return view('reviews', ['reviews' => $reviews , 'events' => $events ]); //ver porque apenas retorna 1, same with gallery
-					//return $events;
+					return view('reviews', ['reviews' => $reviews , 'events' => $events ]);
                 }
                 else
                     return view('reviews', ['reviews' => $reviews ]);
@@ -52,10 +54,11 @@ class ReviewsController extends Controller
 
     public function addReview(Request $request)
 	{
-        $user = Auth::user();
+		$eventName = DB::table('events')->select('name')->where('id','=', $request->events_id)->value('name'); 
+		$user = Auth::user();
         $review = new Review;
         $review->events_id = $request->events_id;
-        $review->events_name = $request->events_name; 
+        $review->events_name = $eventName; 
         $review->users_id = $user->id;
         $review->users_name = $user->name; 
         $review->reviewtext = $request->textbox;   

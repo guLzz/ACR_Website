@@ -8,12 +8,10 @@
 					<h1>Share your Thoughts</h1>
 					<form action="/reviews/" method = "POST" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value ="{{csrf_token()}}">
-                        <select name="" id=""> <!--seleciona o evento pretendido para avaliar-->
-                            <option value=""selected="selected"> Choose Event </option>
+                        <select name="events_id" id=""> <!--seleciona o evento pretendido para avaliar-->
+                            <option value="" disabled selected> Choose Event </option>
                             @foreach($events as $event)
-                                <option value="{{$event->name}}">{{$event->name}}</option>
-                                <input type="hidden" name="events_name" value = "{{$event->name}}">
-                                <input type="hidden" name="events_id" value = "{{$event->id}}">
+                                <option value="{{$event->id}}">{{$event->name}}</option>
                             @endforeach
                         </select>
                         <textarea id="text-box" style = "height:200px;width:500px;" name = "textbox"> </textarea>

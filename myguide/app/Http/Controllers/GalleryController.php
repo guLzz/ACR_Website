@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\HTML;
 use App\Gallery;
 use DB;
 use Auth;
@@ -14,19 +15,20 @@ class GalleryController extends Controller
     {
 		$now = new DateTime();
         $user = Auth::user();
-        $reviews = DB::table('reviews')->get(); // query para a view usar
+        $reviews = DB::table('reviews')->get(); 
         $images = DB::table('gallery')->get();
         if ($user) {
-            $events_user = DB::table('users_events')->where('user_id', '=', $user->id)->pluck('event_id');
+            $events_user = DB::table('users_events')->where('user_id', '=', $user->id)->distinct()->pluck('event_id');
             if (count($events_user)) {
-                $events = array();
+				$events = array();
 				foreach ($events_user as $value) {
-					$query = DB::table('events')
+					$array = array();
+					$query = DB::table('events')->select('id','name')
 						->where('id','=', $value)
 						->where('date', '<', $now)
 						->get();
-					if (!$query) {
-						array_push($events, $query);
+					if (count($query)) {
+						array_push($events, ...$query);
 					}	
 				}
                 if (count($events)) {

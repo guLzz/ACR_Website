@@ -45,7 +45,7 @@
 			@foreach($types as $type)        
 			    <a href="services/{{$type->type}}"><img src="{{ asset('/images/types/'.$type->pic)}}" alt = "Can't Load" height="200" width="200" > {{$type->type}} </a>
 			@endforeach
-			<a href="{{ url('/services/bundle') }}"> <img src="../something" height="200" width="200"> Bundle </a>
+			<a href="{{ url('/services/bundle') }}"> <img src="{{ asset('/images/types/bundle.png')}}" height="200" width="200"> bundle </a>
 		</div>
 	</div>
 

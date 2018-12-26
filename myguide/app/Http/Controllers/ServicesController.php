@@ -12,7 +12,7 @@ class ServicesController extends Controller
 {
     public function index()
     {
-        $types = DB::table('events_type')->get(); // query para a view usar
+		$types = DB::table('events_type')->get(); // query para a view usar
         return view('services', ['types' => $types]); 
 	}
 
