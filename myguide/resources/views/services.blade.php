@@ -18,6 +18,7 @@
                         <button type= "submit"> Add new Type </button>
 					</form>
 					<br>
+                    <hr>
 				@endif
 			@endif
             <script>
@@ -40,7 +41,6 @@
                 uploadPic();  
             </script>
 		</div>
-        <hr>
 		<div class = "image-line">
 			@foreach($types as $type)        
 			    <a href="services/{{$type->type}}"><img src="{{ asset('/images/types/'.$type->pic)}}" alt = "Can't Load" height="200" width="200" > {{$type->type}} </a>
@@ -54,7 +54,7 @@
                     @endif
                 @endif
             @endforeach
-			<a href="{{ url('/services/bundle') }}"> <img src="{{ asset('/images/types/bundle.png')}}" height="200" width="200"> bundle </a>
+			<a href="{{ url('/bundle') }}"> <img src="{{ asset('/images/types/bundle.png')}}" height="200" width="200"> bundle </a>
 		</div>
 	</div>
 

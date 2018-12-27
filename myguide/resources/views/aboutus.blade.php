@@ -2,16 +2,6 @@
 
 @section('content')
     <div>
-		<!-- <div> admin quer adicionar mais campos
-			@if($user = Auth::user())
-            	@if(Auth::user()->role == 'Admin')
-					<input type="text"> 
-					<textarea id="text-box" style = "height:200px;width:500px;"> </textarea>
-					<hr>
-					<br>
-				@endif
-			@endif
-		</div> -->
 		<div>
 			<h1>Who are we</h1>
 			<h2>escrever muita palha</h2>

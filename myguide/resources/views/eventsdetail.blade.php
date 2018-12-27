@@ -27,7 +27,8 @@
                                 @if(Auth::user()->role == 'User')
                                     <form action="/services/{type}/{id}/" method = "POST" enctype="multipart/form-data">	
 										<input type="hidden" name="_token" value ="{{csrf_token()}}">
-										<input type="number" min="1" max="{{$event->nr_pax - count($current_pax)}}" name="number_pax"/> <!--Deixa user escolher quantas pessoas quer levar-->		
+										<p>Number of Persons</p>
+                                        <input type="number" min="1" max="{{$event->nr_pax - count($current_pax)}}" name="number_pax"/> <!--Deixa user escolher quantas pessoas quer levar-->		
 										<input type="hidden" name="events_id" value = "{{$event->id}}">
                                         <input type="hidden" name="type_type" value = "{{$event->events_type_type}}">
                                         <button type= "submit"> Book Now </button>

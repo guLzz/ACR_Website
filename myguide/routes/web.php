@@ -30,6 +30,10 @@ Route::post('/services/{type}/', 'EventsController@addEvent');
 Route::post('/services/{type}/{id}/delete/', 'EventsController@deleteEvent');
 
 
+//Bundle Route
+Route::get('/bundle', 'BundleController@index')->name('bundle');
+Route::post('/bundle/', 'BundleController@newBundle');
+
 //Reviews Routes
 Route::get('/reviews', 'ReviewsController@index')->name('reviews');
 Route::post('/reviews/','ReviewsController@addReview');

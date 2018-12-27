@@ -33,7 +33,7 @@ class ReviewsController extends Controller
 				foreach ($needreview as $key => $value) {
 					$query = DB::table('events')->select('id','name')
 						->where('id','=', $value['event_id'])
-						//->where('date', '<', $now)
+						->where('date', '<', $now)
 						->get();
 					if (count($query)) {
 						array_push($events, ...$query);

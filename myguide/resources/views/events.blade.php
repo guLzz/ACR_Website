@@ -32,6 +32,7 @@
                         <button type= "submit"> Add new Event </button>
 					</form>
 					<br>
+                    <hr>
 				@endif
 			@endif
             <script>
@@ -54,7 +55,6 @@
                 uploadPic();  
             </script>
 		</div>
-        <hr>
 		<div>
 			<ul>
 				@foreach($events as $event)  
