@@ -2,35 +2,97 @@
 
 @section('content')
     <div>
+    <script>
+        $('textarea#text-box').on('keyup',function() 
+        {
+            var maxlen = $(this).attr('maxlength');
+            
+            var length = $(this).val().length;
+            if(length > (maxlen-10) ){
+                $('#text-box').text('max length '+maxlen+' characters only!')
+            }
+            else
+            {
+            $('#text-box').text('');
+            }
+        });
+    </script>
         <div>
 			@if($user = Auth::user())
             	@if(Auth::user()->role == 'Admin')
-					<form action="/services/{type}/" method = "POST" enctype="multipart/form-data">	                       									
-						<input type="hidden" name="_token" value ="{{csrf_token()}}">
+                    <form action="/services/{type}/" method = "POST" enctype="multipart/form-data">	
+                        <table border = "1">                       									
+                        <input type="hidden" name="_token" value ="{{csrf_token()}}">
                         <input type="hidden" name="type_id" value = "{{$type_id}}">
                         <input type="hidden" name="type_type" value = "{{$type_type}}">
-                        <p>Upload Event Image</p>
-                        <input type="file" name = "type_pic" onchange="uploadPic()">
-                        <br><br>
-                        <img src="" height="200" width="200" alt="Image preview">
-                        <br><br>
-                        <p>Name:</p>
-                        <input type="text" name = "name">
-                        <br><br>
-                        <p>About:</p>
-                        <textarea id="text-box" style = "height:200px;width:500px;" name = "about"> </textarea>
-                        <br>
-                        <p>Price:</p>
-                        <input type="number" step="0.01" name = "price">
-                        <br>
-                        <p>Date:</p>
-                        <input type="date" name = "date">
-                        <br>
-                        <p>Number of Persons(MAX):</p>
-                        <input type="number" name = "nr_pax">
-						<br>
-                        <button type= "submit"> Add new Event </button>
-					</form>
+                        <tr>
+                            <td>
+                                <p>Upload Event Image</p>
+                            </td>
+                            <td>
+                                <input type="file" name = "type_pic" onchange="uploadPic()">
+                            </td>
+                            <td>
+                                <img src="" height="200" width="200" alt="Image preview">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Name:</p>
+                            </td>
+                            <td colspan = "2">
+                                <input type="text" name = "name">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <p>About:</p>
+                            </td>
+                            <td>
+                                <textarea id="text-box" style = "height:200px;width:500px;" name = "about" maxlength = "150"> </textarea>
+                            </td>
+                            <td>
+                                <label for="text-box">No more than 150 characters</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <p>Price:</p>
+                            </td>
+                            <td colspan = "2">
+                                <input type="number" step="0.01" name = "price">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <label>Date:</label>
+                            </td>
+                            <td colspan = "2">
+                                <p>Example: 2018-06-12T19:30</p>
+                                <input type="datetime-local" name = "date">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <p>Number of Persons(MAX):</p>
+                            </td>
+                            <td colspan = "2">
+                                <input type="number" name = "nr_pax">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan = "3" style="text-align:center;">
+                                <button type= "submit"> Add new Event </button>
+                            </td>
+                        </tr>  
+                        </table>                                 
+                    </form>                  
 					<br>
                     <hr>
 				@endif
@@ -54,18 +116,20 @@
 
                 uploadPic();  
             </script>
+            
 		</div>
 		<div>
-			<ul>
 				@foreach($events as $event)  
-					<li>
-						<img src="{{ asset('/images/events/'.$event->pic)}}" >
-						<h1>  {{$event->name}}  </h1>
-						<h3> Max PAX: {{$event->nr_pax}} </h3>
-						<h3> Price: {{$event->price}} $ </h3>
-                        <h3> Date: {{$event->date}} </h3>
-						<a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a>
-					</li>
+					<ul>
+                        <table>
+                            <tr><td rowspan = "6" style="text-align:center;"><img src="{{ asset('/images/events/'.$event->pic)}}" height="200" width="200" ></td>
+                            <tr><td><h1><strong> {{$event->name}} </strong></h1></td></tr>
+                            <tr><td><h3> Max PAX: {{$event->nr_pax}} </h3></td></tr>
+                            <tr><td><h3> Price: {{$event->price}} $ </h3></td></tr>
+                            <tr><td><h3> Date: {{$event->date}} </h3></td></tr>
+                            <tr><td style="text-align:center;"><h3><a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a></h3></td></tr>
+                        </table>
+					</ul>
 				@endforeach
 			</ul>			
 		</div>

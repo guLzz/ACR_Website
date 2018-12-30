@@ -38,7 +38,7 @@
             <div class="container">
                 @if($user = Auth::user())
                     @if(Auth::user()->role == 'User' || Auth::user()->role == 'Admin')
-                        <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
+                        <a class="navbar-brand" href="{{ url('/home') }}">Feed</a>
                     @endif
                 @endif
                 <a class="navbar-brand" href="{{ url('/services') }}">Services</a>

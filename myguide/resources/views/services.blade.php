@@ -5,17 +5,35 @@
 		<div>
 			@if($user = Auth::user())
             	@if(Auth::user()->role == 'Admin')
-					<form action="/services/" method = "POST" enctype="multipart/form-data">	                       									
-						<input type="hidden" name="_token" value ="{{csrf_token()}}">
-						<p>Type:</p>
-                        <input type="text" name = "type">
-                        <br><br>
-                        <p>Upload Type Image</p>
-                        <input type="file" name = "type_pic" onchange="uploadPic()">
-                        <br><br>
-                        <img src="" height="200" width="200" alt="Image preview">
-						<br>
-                        <button type= "submit"> Add new Type </button>
+					<form action="/services/" method = "POST" enctype="multipart/form-data">
+                        <table border = "1">                        	                       									
+                            <input type="hidden" name="_token" value ="{{csrf_token()}}">
+                            <tr>
+                                <td>
+                                    <p>Type:</p>
+                                </td>
+                                <td colspan = "2">
+                                    <input type="text" name = "type">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                <p>Upload Type Image</p>
+                                </td>
+                                <td>
+                                <input type="file" name = "type_pic" onchange="uploadPic()">
+                                </td>
+                                <td>
+                                <img src="" height="200" width="200" alt="Image preview">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan = "3" style="text-align:center;">
+                                    <button type= "submit"> Add new Type </button>
+                                </td>
+                            </tr>          
+                        </table>
 					</form>
 					<br>
                     <hr>
@@ -42,20 +60,28 @@
             </script>
 		</div>
 		<div class = "image-line">
-			@foreach($types as $type)        
-			    <a href="services/{{$type->type}}"><img src="{{ asset('/images/types/'.$type->pic)}}" alt = "Can't Load" height="200" width="200" > {{$type->type}} </a>
-                @if($user = Auth::user())
-                    @if(Auth::user()->role == 'Admin')
-                        <form action="/services/delete/" method = "POST" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value ="{{csrf_token()}}">
-                                <input type="hidden" name="type_id" value ="{{$type->id}}">
-                                <button type= "submit"> <img src="{{ asset('/images/types/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
-                        </form>
-                    @endif
-                @endif
-            @endforeach
-			<a href="{{ url('/bundle') }}"> <img src="{{ asset('/images/types/bundle.png')}}" height="200" width="200"> bundle </a>
-		</div>
+            <table> 
+                <tr>
+                    @foreach($types as $type)
+                            <td style="text-align:center;">
+                                <a href="services/{{$type->type}}"><img src="{{ asset('/images/types/'.$type->pic)}}" alt = "Can't Load" height="200" width="200" > {{$type->type}} </a>                       
+                        @if($user = Auth::user())
+                            @if(Auth::user()->role == 'Admin')
+                                <form action="/services/delete/" method = "POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value ="{{csrf_token()}}">
+                                    <input type="hidden" name="type_id" value ="{{$type->id}}">
+                                    <button type= "submit"> <img src="{{ asset('/images/types/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
+                                    </td>
+                                </form>
+                            @endif
+                        @endif
+                    @endforeach
+                    <td>
+                        <a href="{{ url('/bundle') }}"> <img src="{{ asset('/images/types/bundle.png')}}" height="200" width="200"> bundle </a>
+                    </td>
+                </tr>
+            </table>    
+        </div>
 	</div>
 
 

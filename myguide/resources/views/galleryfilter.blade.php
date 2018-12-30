@@ -21,6 +21,7 @@
                         <br><br>
                         <button type= "submit"> Upload </button>
                     </form>
+                    <hr>
                 @endif
             @endif
         @endif
@@ -45,7 +46,6 @@
 
         uploadPic();  
     </script>
-    <hr>
     <div>
         <h2>Filter: </h2>
         <form action="/gallery/filter/" method = "POST" enctype="multipart/form-data">
