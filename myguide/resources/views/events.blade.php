@@ -21,40 +21,43 @@
 			@if($user = Auth::user())
             	@if(Auth::user()->role == 'Admin')
                     <form action="/services/{type}/" method = "POST" enctype="multipart/form-data">	
-                        <table border = "1">                       									
+                        <table>                       									
                         <input type="hidden" name="_token" value ="{{csrf_token()}}">
                         <input type="hidden" name="type_id" value = "{{$type_id}}">
                         <input type="hidden" name="type_type" value = "{{$type_type}}">
-                        <tr>
-                            <td>
-                                <p>Upload Event Image</p>
-                            </td>
-                            <td>
-                                <input type="file" name = "type_pic" onchange="uploadPic()">
-                            </td>
-                            <td>
-                                <img src="" height="200" width="200" alt="Image preview">
-                            </td>
-
-                        </tr>
-                        <tr>
+						<tr>
                             <td>
                                 <p>Name:</p>
                             </td>
                             <td colspan = "2">
-                                <input type="text" name = "name">
+                                <input type="text" name = "name" required>
                             </td>
                         </tr>
+						
+						<tr>
+							<td colspan = "2" style="text-align:center;">
+                                <img src="" height="200" width="200" alt="Image preview">
+                            </td>
+						</tr>
+						<tr>
+							<td colspan = "2" style="text-align:center;">
+                                <p>Upload Event Image</p>
+                            </td>
+						</tr>
+						<tr>
+                            <td colspan = "2" style="text-align:center;">
+                                <input type="file" name = "type_pic" onchange="uploadPic()" required>
+                            </td>
+                        </tr>
+                        
 
                         <tr>
                             <td>
                                 <p>About:</p>
                             </td>
                             <td>
-                                <textarea id="text-box" style = "height:200px;width:500px;" name = "about" maxlength = "150"> </textarea>
-                            </td>
-                            <td>
-                                <label for="text-box">No more than 150 characters</label>
+								<label for="text-box">No more than 150 characters</label><br>
+                                <textarea id="text-box" style = "height:200px;width:500px;" name = "about" maxlength = "150" required> </textarea>
                             </td>
                         </tr>
                         
@@ -63,7 +66,7 @@
                                 <p>Price:</p>
                             </td>
                             <td colspan = "2">
-                                <input type="number" step="0.01" name = "price">
+                                <input type="number" step="0.01" name = "price" required>
                             </td>
                         </tr>
                         
@@ -73,7 +76,7 @@
                             </td>
                             <td colspan = "2">
                                 <p>Example: 2018-06-12T19:30</p>
-                                <input type="datetime-local" name = "date">
+                                <input type="datetime-local" name = "date" required>
                             </td>
                         </tr>
                         
@@ -82,12 +85,12 @@
                                 <p>Number of Persons(MAX):</p>
                             </td>
                             <td colspan = "2">
-                                <input type="number" name = "nr_pax">
+                                <input type="number" name = "nr_pax" required>
                             </td>
                         </tr>
 
                         <tr>
-                            <td colspan = "3" style="text-align:center;">
+                            <td colspan = "2" style="text-align:center;">
                                 <button type= "submit"> Add new Event </button>
                             </td>
                         </tr>  

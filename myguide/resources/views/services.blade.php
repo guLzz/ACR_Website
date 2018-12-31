@@ -6,30 +6,34 @@
 			@if($user = Auth::user())
             	@if(Auth::user()->role == 'Admin')
 					<form action="/services/" method = "POST" enctype="multipart/form-data">
-                        <table border = "1">                        	                       									
+                        <table>                        	                       									
                             <input type="hidden" name="_token" value ="{{csrf_token()}}">
                             <tr>
                                 <td>
                                     <p>Type:</p>
                                 </td>
-                                <td colspan = "2">
-                                    <input type="text" name = "type">
+                                <td>
+                                    <input type="text" name = "type" required>
                                 </td>
                             </tr>
                             
                             <tr>
-                                <td>
-                                <p>Upload Type Image</p>
-                                </td>
-                                <td>
-                                <input type="file" name = "type_pic" onchange="uploadPic()">
-                                </td>
-                                <td>
+                                <td colspan="2" style="text-align:center;">
                                 <img src="" height="200" width="200" alt="Image preview">
                                 </td>
-                            </tr>
+							</tr>
+							<tr>
+								<td colspan = "2" style="text-align:center;">
+                                <p>Upload Type Image</p>
+                                </td>
+							</tr>
+							<tr>
+                                <td colspan = "2" style="text-align:center;">
+                                <input type="file" name = "type_pic" onchange="uploadPic()" required>
+                                </td>
+							</tr>
                             <tr>
-                                <td colspan = "3" style="text-align:center;">
+                                <td colspan = "2" style="text-align:center;">
                                     <button type= "submit"> Add new Type </button>
                                 </td>
                             </tr>          

@@ -43,7 +43,8 @@ class EventsController extends Controller
 				$event = Event::find($request->events_id);
 				$user->events()->attach($request->events_id);
 			}
-			return redirect("/services/{$request->type_type}/{$request->events_id}");
+			//return redirect("/services/{$request->type_type}/{$request->events_id}");
+			return redirect("/home");
 		}		
     }
 

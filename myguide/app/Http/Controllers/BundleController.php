@@ -63,7 +63,8 @@ class BundleController extends Controller
             }
         //}
         
-        return redirect("/bundle/");
-    }
+        //return redirect("/bundle/");
+		return redirect("/home");
+	}
 
 }

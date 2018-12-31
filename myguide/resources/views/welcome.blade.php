@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>myguideMadeira</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -49,7 +49,8 @@
             }
 
             .links > a {
-                color: #636b6f;
+				z-index:1;
+                color:whitesmoke;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -61,9 +62,34 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+			#myVideo {
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				min-width: 100%; 
+				min-height: 100%;
+				z-index:0;
+			}
+			#main-link a:link, a:visited {
+			color: whitesmoke;
+			}
+
+			#main-link a:hover, .links a:hover{
+			color: hotpink;
+			}
+
+			#main-link a:active {
+			color: blue;
+			}
         </style>
     </head>
     <body>
+		<div>
+			<video autoplay muted loop id="myVideo">
+				<source src="{{ asset('/videos/mainvideo.mp4')}}" type="video/mp4">
+			</video>
+		</div>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -80,10 +106,10 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div id = "main-link" class="title m-b-md">
                     <a href="{{ url('/home') }}">myguideMadeira</a>
                 </div>
-
+				
                 <div class="links">
                     <a href="{{ url('/services') }}">Services</a>
                     <a href="{{ url('/reviews') }}">Reviews</a>
