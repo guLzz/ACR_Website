@@ -26,7 +26,7 @@
 			<div>
                 <p>Vila Porto Moniz</p>
                 <p>myguidemadeira@gmail.com</p> 
-                <p>Tel: (00351) 960 473 142</p>   
+                <p>Tel: (+351) 960 473 142</p>   
             </div>
             <br>
             <span>Friendly Service/</span>

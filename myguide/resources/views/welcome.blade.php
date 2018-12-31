@@ -72,15 +72,15 @@
 				z-index:0;
 			}
 			#main-link a:link, a:visited {
-			color: whitesmoke;
+				color: whitesmoke;
 			}
 
 			#main-link a:hover, .links a:hover{
-			color: hotpink;
+				color: hotpink;
 			}
 
 			#main-link a:active {
-			color: blue;
+				color: blue;
 			}
         </style>
     </head>

@@ -11,7 +11,7 @@
                             <input type="hidden" name="_token" value ="{{csrf_token()}}">
                             <input type="hidden" name="event_id" value ="{{$event->id}}">
                             <input type="hidden" name="type_name" value = "{{$event->events_type_type}}">
-                            <button type= "submit"> <img src="{{ asset('/images/types/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
+                            <button type= "submit"> <img src="{{ asset('/images/utility/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
                         </form>
                     @endif
                 @endif 

@@ -34,7 +34,7 @@
 							</tr>
                             <tr>
                                 <td colspan = "2" style="text-align:center;">
-                                    <button type= "submit"> Add new Type </button>
+                                    <button type= "submit">Add new Type</button>
                                 </td>
                             </tr>          
                         </table>
@@ -74,14 +74,14 @@
                                 <form action="/services/delete/" method = "POST" enctype="multipart/form-data">
                                     <input type="hidden" name="_token" value ="{{csrf_token()}}">
                                     <input type="hidden" name="type_id" value ="{{$type->id}}">
-                                    <button type= "submit"> <img src="{{ asset('/images/types/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
+                                    <button type= "submit"> <img src="{{ asset('/images/utility/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
                                     </td>
                                 </form>
                             @endif
                         @endif
                     @endforeach
                     <td>
-                        <a href="{{ url('/bundle') }}"> <img src="{{ asset('/images/types/bundle.png')}}" height="200" width="200"> bundle </a>
+                        <a href="{{ url('/bundle') }}"> <img src="{{ asset('/images/utility/bundle.png')}}" height="200" width="200"> bundle </a>
                     </td>
                 </tr>
             </table>    

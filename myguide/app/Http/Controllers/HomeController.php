@@ -35,16 +35,18 @@ class HomeController extends Controller
                     ->get();
             $querydate = DB::table('events')->select('date')
                         ->where('id','=', $value)
-                        ->pluck('date');
-            if ($querydate[0] > $now) {
+						->pluck('date');			
+			$dateQUERY = new DateTime($querydate[0]);
+            if ($dateQUERY < $now) {
                 array_push($oldevents, ...$query);
             }
             else
             {
                 array_push($newevents, ...$query);
-            } 
-
-        }
+			} 			
+		}
+		//return $oldevents;
+		//return $newevents;
 
         return view('home', ['oldevents' => $oldevents, 'newevents' => $newevents, 'adminevents' => $adminevents]);
     }
