@@ -26,7 +26,19 @@ class HomeController extends Controller
         $adminevents = DB::table('events')
                     ->where('date','>', $now)
                     ->get();
-                        
+						
+		$alleventsID = DB::table('events')->select('id')
+					->where('date','>', $now)
+					->pluck('id');
+
+		$current_pax = array();
+		foreach ($alleventsID as $value) {
+			$query = DB::table('users_events')
+                    ->where('event_id','=', $value)
+					->get();
+			array_push($current_pax, $query);
+		}
+
         $oldevents = array();
         $newevents = array();
         foreach ($getUserEvents as $value) {
@@ -45,9 +57,6 @@ class HomeController extends Controller
                 array_push($newevents, ...$query);
 			} 			
 		}
-		//return $oldevents;
-		//return $newevents;
-
-        return view('home', ['oldevents' => $oldevents, 'newevents' => $newevents, 'adminevents' => $adminevents]);
+        return view('home', ['oldevents' => $oldevents, 'newevents' => $newevents, 'adminevents' => $adminevents, 'current_pax' => $current_pax]);
     }
 }

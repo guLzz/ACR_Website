@@ -21,6 +21,7 @@ class CreateReviewsTable extends Migration
             $table->integer('users_id')->unsigned()->index();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('users_name')->references('name')->on('users')->onDelete('cascade');
+			$table->integer('rating');
 			$table->string('reviewtext');
 			$table->string('pic');
             $table->timestamps();

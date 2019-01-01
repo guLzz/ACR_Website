@@ -5,29 +5,60 @@
         @if($user = Auth::user())
             @if(Auth::user()->role == 'User')
 				@if(!empty($events))
-					<h1>Share your Thoughts</h1>
-					<form action="/reviews/" method = "POST" enctype="multipart/form-data">
+					<h1 style="text-align: center;">Share your Thoughts</h1>
+					<form action="/reviews/" method = "POST" enctype="multipart/form-data" style="text-align: center;">
                         <input type="hidden" name="_token" value ="{{csrf_token()}}">
-                        <select name="events_id" id=""> <!--seleciona o evento pretendido para avaliar-->
-                            <option value="" disabled selected> Choose Event </option>
-                            @foreach($events as $event)
-                                <option value="{{$event->id}}">{{$event->name}}</option>
-                            @endforeach
-                        </select><br>
-                        <label for="text-box">No more than 150 characters</label><br>
-                        <textarea id="text-box" style = "height:200px;width:500px;" name = "textbox" maxlength = "150"> </textarea>
-                        <table>
-                            <tr>
-                                <td>
-                                    <input type="file" name = "type_pic" onchange="uploadPic()">
-                                </td>
-                                <td>
-                                    <img src="" height="200" width="200" alt="Image preview">
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                        <button type= "submit"> Review Us </button>
+                        <div class="boxy">
+							<div class="left">
+								<select name="events_id" id="" required> <!--seleciona o evento pretendido para avaliar-->
+									<option value="" disabled selected> Choose Event </option>
+									@foreach($events as $event)
+										<option value="{{$event->id}}">{{$event->name}}</option>
+									@endforeach
+								</select><br><br>
+								
+								<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+								<div class="rating">
+									<input id="star5" name="rating" type="radio" value="5" class="radio-btn hide" />
+									<label for="star5" >☆</label>
+									<input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" />
+									<label for="star4" >☆</label>
+									<input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" />
+									<label for="star3" >☆</label>
+									<input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" />
+									<label for="star2" >☆</label>
+									<input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" />
+									<label for="star1" >☆</label>
+									<div class="clear"></div>
+								</div><br>						
+								<br>
+								<label for="text-box">No more than 150 characters</label><br>
+								<textarea id="text-box" style = "height:200px;width:500px;" name = "textbox" maxlength = "150" required> </textarea>
+								<br>
+								<button type= "submit" style="float:right;"> Review Us </button>
+							</div>
+							<div class="right">
+								<table border="1">
+									<tr>
+										<td style="text-align:center;">									
+											<img src="" height="200" width="200" alt="Image preview">
+										</td>
+									</tr>
+									<tr>
+										<td style="text-align:center;">
+											<p>Upload Event Image</p>
+										</td>
+									</tr>
+									<tr>
+										<td style="text-align:center;">
+											<label for="upload-pic">Not Required</label><br>
+											<input id ="upload-pic" type="file" name = "type_pic" onchange="uploadPic()" >
+										</td>                           
+									</tr>
+								</table>
+							</div>
+							<br>
+                        </div>
                     </form>
                     <script>
                         function uploadPic(){
@@ -63,7 +94,7 @@
                             }
                         });
                     </script>
-					<hr>
+					
 					<br>
 				@endif	
             @endif
@@ -72,12 +103,23 @@
     <div>
         @foreach($reviews as $review)  
             <ul>
-                <table>
+                <table border="1">
                     <tr><td rowspan = "5" style="text-align:center;"><img src="{{ asset('/images/gallery/'.$review->pic)}}" height="200" width="200" class = "review-img"></td>    
                     <tr><td><p>User: {{$review->users_name}}</p></td></tr>
-                    <tr><td><p>Date: {{$review->created_at}}</p></td></tr> 
+                    <tr style="text-align:center;">
+						<td>
+							@for($i = 1; $i <= $review->rating; $i++)
+								<img src="{{ asset('/images/utility/starchecked.png')}}" height="20" width="20" alt="error loading">
+							@endfor
+							<?php  $missingstars = 5 - $review->rating;  ?>
+							@for($j = 1; $j <= $missingstars; $j++)
+								<img src="{{ asset('/images/utility/star.png')}}" height="20" width="20" alt="error loading">
+							@endfor
+						</td>
+					</tr>
+					<tr><td><p>Date: {{$review->created_at}}</p></td></tr> 
                     <tr><td><p>Event: {{$review->events_name}}</p></td></tr>  
-                    <tr><td><textarea readonly class = "textarea-readable"> {{$review->reviewtext}} </textarea></td></tr>						
+                    <tr><td colspan="2"><textarea readonly class = "textarea-readable"> {{$review->reviewtext}} </textarea></td></tr>						
             </ul>
         @endforeach		
     </div>

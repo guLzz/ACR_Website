@@ -6,7 +6,7 @@
         <div>
             @if(Auth::user()->role == 'User')
                 <h1 style="text-align: center;"> Track your events! </h1>
-				<section class="sides">				
+				<div class="boxy">				
 					<div class="left">
 						<table border = "1" style="margin-left: auto;margin-right: auto;">
 								<tr>
@@ -19,7 +19,6 @@
 								@endforeach
 						</table>
 					</div>
-					<br>
 					<div class="right">
 						<table border = "1" style="margin-left: auto;margin-right: auto;">
 								<tr>
@@ -32,7 +31,7 @@
 								@endforeach    
 						</table>
 					</div>
-				</section>
+				</div>
             @endif
 			@if(Auth::user()->role == 'Admin')
 				<h1 style="text-align: center;"> Track your next events! </h1>
@@ -41,13 +40,17 @@
 						<th>Date</th>
 						<th>Event</th>
 						<th>Number PAX</th>
+						<th>Winning</th>
 					</tr>
+					<?php $i=0; ?>
 					@foreach($adminevents as $adminevent)
 					<tr>
 						<td> {{$adminevent->date}} </td>
 						<td> {{$adminevent->name}} </td>
-						<td> {{$adminevent->nr_pax}} </td>
+						<td> {{count($current_pax[$i])}} </td>
+						<td> {{$adminevent->price * count($current_pax[$i]) }}$ </td>
 					</tr>
+					<?php $i++; ?>
 					@endforeach    
 				</table>
 			@endif

@@ -30,6 +30,71 @@
         a.fancybox:hover img {
             position: relative; z-index: 999; -o-transform: scale(1.03,1.03); -ms-transform: scale(1.03,1.03); -moz-transform: scale(1.03,1.03); -webkit-transform: scale(1.03,1.03); transform: scale(1.03,1.03);
         }
+
+		.txt-center {
+			text-align: center;
+		  }
+		  .hide {
+			display: none;
+		  }
+		  
+		  .clear {
+			float: none;
+			clear: both;
+		  }
+		  
+		  .rating {
+			  width: 45%;
+			  unicode-bidi: bidi-override;
+			  direction: rtl;
+			  text-align: center;
+			  position: relative;
+			  transform:scale(2);
+		  }
+		  
+		  .rating > label {
+			  float: right;
+			  display: inline;
+			  padding: 0;
+			  margin: 0;
+			  position: relative;
+			  width: 1.1em;
+			  cursor: pointer;
+			  color: #000;
+		  }
+		  
+		  .rating > label:hover,
+		  .rating > label:hover ~ label,
+		  .rating > input.radio-btn:checked ~ label {
+			  color: transparent;
+		  }
+		  
+		  .rating > label:hover:before,
+		  .rating > label:hover ~ label:before,
+		  .rating > input.radio-btn:checked ~ label:before,
+		  .rating > input.radio-btn:checked ~ label:before {
+			  content: "\2605";
+			  position: absolute;
+			  left: 0;
+			  color:gold;
+		  }
+
+		.boxy {
+			position: fixed;
+			left: 350px;
+			padding: 0;
+			margin: 0;
+		}
+
+		.left { 	
+			display: inline-block;
+			float: left;
+		}
+
+		.right {
+			display: inline-block;
+			float: right;
+		}
     </style>
 </head>
 <body>

@@ -60,7 +60,8 @@ class ReviewsController extends Controller
         $review->events_id = $request->events_id;
         $review->events_name = $eventName; 
         $review->users_id = $user->id;
-        $review->users_name = $user->name; 
+		$review->users_name = $user->name; 
+		$review->rating = $request->rating;
         $review->reviewtext = $request->textbox;   
         $file = $request->hasFile('type_pic');
         
