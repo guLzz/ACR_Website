@@ -16,8 +16,7 @@
 										<option value="{{$event->id}}">{{$event->name}}</option>
 									@endforeach
 								</select><br><br>
-								
-								<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+															
 								<div class="rating">
 									<input id="star5" name="rating" type="radio" value="5" class="radio-btn hide" />
 									<label for="star5" >☆</label>
@@ -101,6 +100,27 @@
         @endif
     </div>
     <div>
+		<div>
+			@if(!empty($averageRating))
+				<table>
+					<th colspan ="2" style="text-align:center;"><h1>Average Rating</h1></th>
+					<tr style="text-align:center;">
+						<td>
+							Number of Reviews: {{count($reviews)}}
+						</td>
+						<td>
+							@for($i = 1; $i <= $averageRating; $i++)
+									<img src="{{ asset('/images/utility/starchecked.png')}}" height="20" width="20" alt="error loading">
+							@endfor
+							<?php  $missingstars = 5 - $averageRating;  ?>
+							@for($j = 1; $j <= $missingstars; $j++)
+								<img src="{{ asset('/images/utility/star.png')}}" height="20" width="20" alt="error loading">
+							@endfor
+						</td>
+					</tr>
+				</table>
+			@endif
+		</div>
         @foreach($reviews as $review)  
             <ul>
                 <table border="1">

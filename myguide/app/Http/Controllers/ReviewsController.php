@@ -21,18 +21,30 @@ class ReviewsController extends Controller
         }
         else
         {
-            $user = Auth::user()->id;
-		    $reviews = DB::table('reviews')->get(); 
-			$query1 = DB::table('users_events')->select('event_id')->where('user_id','=',$user)->distinct()->get();
-			$query2 = DB::table('reviews')->select('events_id')->where('users_id','=',$user)->get();
-			$needreview = ($query1->diffKeys($query2))->all();
-			$needreview = json_decode(json_encode($needreview),true);
+			$user = Auth::user()->id;
+			$reviews = DB::table('reviews')->orderBy('id', 'DESC')->get(); 
+			$reviewRating = DB::table('reviews')->select('rating')->pluck('rating');
+			$needreview = DB::table('users_events')->select('users_events.event_id')
+						->join('reviews as reviews', 'reviews.events_id', '=', 'users_events.event_id', 'left outer')
+						->where('reviews.events_id','=',null)
+						->orderBy('users_events.event_id', 'ASC')
+						->distinct()
+						->pluck('event_id');
 
+			
+			$sumRating = 0;
+			foreach ($reviewRating as $value) {
+				$sumRating = $sumRating + $value;
+			}
+
+			$averageRating = round($sumRating/count($reviewRating));
+
+			
 			if(count($needreview)){
                 $events = array();
-				foreach ($needreview as $key => $value) {
+				foreach ($needreview as $value) {
 					$query = DB::table('events')->select('id','name')
-						->where('id','=', $value['event_id'])
+						->where('id','=', $value)
 						->where('date', '<', $now)
 						->get();
 					if (count($query)) {
@@ -40,15 +52,16 @@ class ReviewsController extends Controller
 					}
 					
 				}
+				//return $events;
 				
                 if (count($events)) {
-					return view('reviews', ['reviews' => $reviews , 'events' => $events ]);
+					return view('reviews', ['reviews' => $reviews , 'averageRating' => $averageRating , 'events' => $events ]);
                 }
                 else
-                    return view('reviews', ['reviews' => $reviews ]);
+                    return view('reviews', ['reviews' => $reviews,'averageRating' => $averageRating]);
             }
             else
-                return view('reviews', ['reviews' => $reviews ]);
+                return view('reviews', ['reviews' => $reviews, 'averageRating' => $averageRating ]);
         }
     }
 
