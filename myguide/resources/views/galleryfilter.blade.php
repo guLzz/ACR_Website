@@ -9,7 +9,7 @@
                     <h1>Share your Experiences with the World!</h1>
                     <form action="/gallery/" method = "POST" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value ="{{csrf_token()}}">
-                        <select name = "events_id" id=""> <!--seleciona o evento pretendido para avaliar-->
+                        <select name = "events_id" id="" required> <!--seleciona o evento pretendido para avaliar-->
                             <option value="" disabled selected> Choose Event </option>
 							@foreach($events as $event)
 								<option  value="{{$event->id}}"> {{$event->name}} </option>

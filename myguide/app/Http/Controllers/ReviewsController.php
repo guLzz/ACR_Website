@@ -30,15 +30,15 @@ class ReviewsController extends Controller
 						->orderBy('users_events.event_id', 'ASC')
 						->distinct()
 						->pluck('event_id');
+            $averageRating = 0;
+			if(count($reviewRating)){
+			    $sumRating = 0;
+			    foreach ($reviewRating as $value) {
+				    $sumRating = $sumRating + $value;
+			    }
 
-			
-			$sumRating = 0;
-			foreach ($reviewRating as $value) {
-				$sumRating = $sumRating + $value;
-			}
-
-			$averageRating = round($sumRating/count($reviewRating));
-
+			    $averageRating = round($sumRating/count($reviewRating));
+            }
 			
 			if(count($needreview)){
                 $events = array();
@@ -58,7 +58,7 @@ class ReviewsController extends Controller
 					return view('reviews', ['reviews' => $reviews , 'averageRating' => $averageRating , 'events' => $events ]);
                 }
                 else
-                    return view('reviews', ['reviews' => $reviews,'averageRating' => $averageRating]);
+                    return view('reviews', ['reviews' => $reviews, 'averageRating' => $averageRating]);
             }
             else
                 return view('reviews', ['reviews' => $reviews, 'averageRating' => $averageRating ]);

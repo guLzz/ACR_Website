@@ -11,8 +11,8 @@ use DB;
 class BundleController extends Controller
 {
     public function index()
-    {
-        $user = Auth::user()->id;
+    {   
+        //$user = Auth::user()->id;
         $now = new DateTime();
         $types = DB::table('events_type')->select('id')->pluck('id');             
         $allevents = DB::table('events')->select('id')->pluck('id');

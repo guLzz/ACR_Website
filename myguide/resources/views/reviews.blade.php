@@ -18,15 +18,15 @@
 								</select><br><br>
 															
 								<div class="rating">
-									<input id="star5" name="rating" type="radio" value="5" class="radio-btn hide" />
+									<input id="star5" name="rating" type="radio" value="5" class="radio-btn hide" required>
 									<label for="star5" >☆</label>
-									<input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" />
+									<input id="star4" name="rating" type="radio" value="4" class="radio-btn hide" >
 									<label for="star4" >☆</label>
-									<input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" />
+									<input id="star3" name="rating" type="radio" value="3" class="radio-btn hide" >
 									<label for="star3" >☆</label>
-									<input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" />
+									<input id="star2" name="rating" type="radio" value="2" class="radio-btn hide" >
 									<label for="star2" >☆</label>
-									<input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" />
+									<input id="star1" name="rating" type="radio" value="1" class="radio-btn hide" >
 									<label for="star1" >☆</label>
 									<div class="clear"></div>
 								</div><br>						
@@ -78,21 +78,7 @@
 
                     uploadPic();  
                     </script>
-                    <script>
-                        $('textarea#text-box').on('keyup',function() 
-                        {
-                            var maxlen = $(this).attr('maxlength');
-                            
-                            var length = $(this).val().length;
-                            if(length > (maxlen-10) ){
-                                $('#text-box').text('max length '+maxlen+' characters only!')
-                            }
-                            else
-                            {
-                            $('#text-box').text('');
-                            }
-                        });
-                    </script>
+                    
 					
 					<br>
 				@endif	
@@ -101,25 +87,30 @@
     </div>
     <div>
 		<div>
-			@if(!empty($averageRating))
-				<table>
-					<th colspan ="2" style="text-align:center;"><h1>Average Rating</h1></th>
-					<tr style="text-align:center;">
-						<td>
-							Number of Reviews: {{count($reviews)}}
-						</td>
-						<td>
-							@for($i = 1; $i <= $averageRating; $i++)
-									<img src="{{ asset('/images/utility/starchecked.png')}}" height="20" width="20" alt="error loading">
-							@endfor
-							<?php  $missingstars = 5 - $averageRating;  ?>
-							@for($j = 1; $j <= $missingstars; $j++)
-								<img src="{{ asset('/images/utility/star.png')}}" height="20" width="20" alt="error loading">
-							@endfor
-						</td>
-					</tr>
-				</table>
-			@endif
+            @if($user = Auth::user())
+                @if(Auth::user()->role == 'User' || Auth::user()->role == 'Admin')
+                    @if($averageRating > 0)
+                        <table>
+                            <th colspan ="2" style="text-align:center;"><h1>Average Rating</h1></th>
+                            <tr style="text-align:center;">
+                                <td>
+                                    Number of Reviews: {{count($reviews)}}
+                                </td>
+                                <td>
+                                    @for($i = 1; $i <= $averageRating; $i++)
+                                            <img src="{{ asset('/images/utility/starchecked.png')}}" height="20" width="20" alt="error loading">
+                                    @endfor
+                                    <?php  $missingstars = 5 - $averageRating;  ?>
+                                    @for($j = 1; $j <= $missingstars; $j++)
+                                        <img src="{{ asset('/images/utility/star.png')}}" height="20" width="20" alt="error loading">
+                                    @endfor
+                                </td>
+                            </tr>
+                        </table>
+                    @endif
+                @endif
+            @endif
+
 		</div>
         @foreach($reviews as $review)  
             <ul>
