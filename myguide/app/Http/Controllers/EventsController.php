@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use App\Event;
 use Illuminate\Http\Request;
+use DateTime;
 
 class EventsController extends Controller
 {
@@ -19,20 +20,32 @@ class EventsController extends Controller
 
 	public function addEvent(Request $request)
 	{
-        $event = new Event;
-        $event->events_type_id = $request->type_id;; //id da wildcard
-        $event->events_type_type = $request->type_type;; //wildcard
-        $file = $request->file('type_pic');
-        $filename= time().'-'.$file->getClientOriginalName();
-        $file = $file->move('../public/images/events',$filename);
-        $event->pic = $filename;
-        $event->name = $request->name;
-        $event->about = $request->about;
-        $event->price = $request->price;
-        $event->date = $request->date;
-        $event->nr_pax = $request->nr_pax; 
-        $event->save();
-		return redirect("/services/{$request->type_type}"); 
+        if(isset($request->name) and isset($request->about) and isset($request->date)){
+            
+            if(DateTime::createFromFormat('Y-m-d\TH:i', ($request->date)) !== false){
+                $event = new Event;
+                $event->events_type_id = $request->type_id;; //id da wildcard
+                $event->events_type_type = $request->type_type;; //wildcard
+                $file = $request->file('type_pic');
+                $filename= time().'-'.$file->getClientOriginalName();
+                $file = $file->move('../public/images/events',$filename);
+                $event->pic = $filename;
+                $event->name = $request->name;
+                $event->about = $request->about;
+                $event->price = $request->price;
+                $event->date = $request->date;
+                $event->nr_pax = $request->nr_pax; 
+                $event->save();
+                return redirect("/services/{$request->type_type}");
+            }
+            else{
+                return redirect()->back()->with('alert', 'Fill the Date Properly!');
+            } 
+        }
+        else
+        {
+            return redirect()->back()->with('alert', 'Fill the fields Properly!');
+        }
     }
     
     public function bookNow(Request $request)

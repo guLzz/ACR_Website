@@ -14,7 +14,7 @@
 								<option  value="{{$event->id}}"> {{$event->name}} </option>
                             @endforeach
                         </select>
-                        <input type="file" name = "type_pic" onchange="uploadPic()">
+                        <input type="file" name = "type_pic" onchange="uploadPic()" required>
                         <br><br>
                         <img src="" height="200" width="200" alt="Image preview">
                         <br><br>
@@ -50,7 +50,7 @@
         <h2>Filter: </h2>
         <form action="/gallery/filter/" method = "POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value ="{{csrf_token()}}">
-            <select name = "type_id" id=""> 
+            <select name = "type_id" id="" required> 
                 <option disabled selected> Choose a Type </option>
                 @foreach($types as $type)
                     <option  value="{{$type->id}}"> {{$type->type}} </option>
@@ -60,15 +60,31 @@
         </form>
     </div>
     <div>
-        <!--imagens pequenas, quando clicamos ampliam com hipotese de passar para a proxima-->
-        <!--for each para cobrir todas as imagens existentes
-        <img src="imagem pequena" onclick = "zoom()" height="200" width="200">-->
-
+        
 		@foreach($reviews as $review)  <!--imprimir os eventos existentes junto com as suas imagens-->
 			<img src="{{ asset('/images/gallery/'.$review->pic)}}"  class="fancybox" height="200" width="200">
-		@endforeach
+        @endforeach
         @foreach($images as $image)
-            <img src="{{ asset('/images/gallery/'.$image->name)}}"  class="fancybox" height="200" width="200">
+            <form action="/gallery/image/delete/" method = "POST" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value ="{{csrf_token()}}">
+                <table style="float:left">
+                    <tr>
+                        <td>
+                            <img src="{{ asset('/images/gallery/'.$image->name)}}"  class="fancybox" height="200" width="200">
+                        </td>
+                    </tr>
+                    @if($user = Auth::user())
+                        @if(Auth::user()->role == 'Admin')
+                            <input type="hidden" name="pic_id" value = "{{$image->id}}">
+                            <tr>
+                                <td style="text-align:center;">
+                                    <button type= "submit"> <img src="{{ asset('/images/utility/delete.png')}}" alt="Dlt" height="20" width="20"> </button>
+                                </td>
+                            </tr>
+                        @endif
+                    @endif
+                </table>
+            </form>
         @endforeach
     </div>
     <script>

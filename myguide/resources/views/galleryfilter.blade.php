@@ -15,7 +15,7 @@
 								<option  value="{{$event->id}}"> {{$event->name}} </option>
                             @endforeach
                         </select>
-                        <input type="file" name = "type_pic" onchange="uploadPic()">
+                        <input type="file" name = "type_pic" onchange="uploadPic()" required>
                         <br><br>
                         <img src="" height="200" width="200" alt="Image preview">
                         <br><br>
@@ -50,7 +50,7 @@
         <h2>Filter: </h2>
         <form action="/gallery/filter/" method = "POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value ="{{csrf_token()}}">
-            <select name = "type_id" id=""> 
+            <select name = "type_id" id="" required> 
                 <option disabled selected> Choose a Type </option>
                 @foreach($types as $type)
                     <option  value="{{$type->id}}"> {{$type->type}} </option>

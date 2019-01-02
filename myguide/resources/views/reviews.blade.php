@@ -32,7 +32,7 @@
 								</div><br>						
 								<br>
 								<label for="text-box">No more than 150 characters</label><br>
-								<textarea id="text-box" style = "height:200px;width:500px;" name = "textbox" maxlength = "150" required> </textarea>
+								<textarea id="text-box" style = "height:200px;width:500px;" name = "textbox" maxlength = "150"> </textarea>
 								<br>
 								<button type= "submit" style="float:right;"> Review Us </button>
 							</div>

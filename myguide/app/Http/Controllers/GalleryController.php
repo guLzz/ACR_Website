@@ -105,5 +105,11 @@ class GalleryController extends Controller
             return redirect("/gallery/");
         }
         
-	}
+    }
+    
+    public function deletePic(Request $request)
+    {
+        DB::table('gallery')->delete($request->pic_id);
+        return redirect("/gallery");
+    }
 }

@@ -31,14 +31,19 @@ class ServicesController extends Controller
 
 	public function addType(Request $request)
 	{
-		$type = new Event_Type;
-        $type->type = $request->type; 
-        $file = $request->file('type_pic');
-        $filename= time().'-'.$file->getClientOriginalName();
-        $file = $file->move('../public/images/types',$filename);
-        $type->pic = $filename;
-		$type->save();
-		return redirect("/services/");
+        if(isset($request->type)){
+            $type = new Event_Type;
+            $type->type = $request->type; 
+            $file = $request->file('type_pic');
+            $filename= time().'-'.$file->getClientOriginalName();
+            $file = $file->move('../public/images/types',$filename);
+            $type->pic = $filename;
+            $type->save();
+            return redirect("/services/");
+        }
+        else{
+            return redirect()->back()->with('alert', 'Fill the Type Properly!');
+        }
     }
     
     public function deleteType(Request $request)

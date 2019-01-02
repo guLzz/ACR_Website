@@ -67,6 +67,7 @@ class ReviewsController extends Controller
 
     public function addReview(Request $request)
 	{
+        
 		$eventName = DB::table('events')->select('name')->where('id','=', $request->events_id)->value('name'); 
 		$user = Auth::user();
         $review = new Review;
@@ -75,7 +76,12 @@ class ReviewsController extends Controller
         $review->users_id = $user->id;
 		$review->users_name = $user->name; 
 		$review->rating = $request->rating;
-        $review->reviewtext = $request->textbox;   
+        if(isset($request->textbox)){
+            $review->reviewtext = $request->textbox;       
+        }
+        else{
+            $review->reviewtext = "No text";
+        }
         $file = $request->hasFile('type_pic');
         
         if($file){

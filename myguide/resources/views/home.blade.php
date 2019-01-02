@@ -40,7 +40,7 @@
 						<th>Date</th>
 						<th>Event</th>
 						<th>Number PAX</th>
-						<th>Winning</th>
+						<th>Profit</th>
 					</tr>
 					<?php $i=0; ?>
 					@foreach($adminevents as $adminevent)

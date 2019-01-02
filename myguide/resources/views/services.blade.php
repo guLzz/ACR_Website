@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-	<div>
+    <div style="text-align:center;">
+        @if (session('alert'))
+        <div class="alert alert-success">
+        @endif
+            {{ session('alert') }}
+        </div>
+    </div>
+    <div>
 		<div>
 			@if($user = Auth::user())
             	@if(Auth::user()->role == 'Admin')

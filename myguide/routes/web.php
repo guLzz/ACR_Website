@@ -45,6 +45,7 @@ Route::get('/aboutus', 'AboutUsController@index')->name('aboutus');
 Route::get('/gallery', 'GalleryController@index')->name('gallery');
 Route::post('/gallery/filter/', 'GalleryController@filterPics');
 Route::post('/gallery/','GalleryController@addPic');
+Route::post('/gallery/image/delete/','GalleryController@deletePic');
 
 //Home Routes
 Route::get('/home', 'HomeController@index')->name('home');
