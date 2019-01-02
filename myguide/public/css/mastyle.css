@@ -1,0 +1,136 @@
+html, body {
+    background-color: darkgreen;
+    color: #636b6f;
+    font-family: 'Miriam Libre', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    z-index:1;
+    color:whitesmoke;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.space {
+    margin-bottom: 40px;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index:0;
+}
+#main-link a:link, a:visited {
+    color: whitesmoke;
+}
+
+#main-link a:hover, .links a:hover{
+    color: hotpink;
+}
+
+#main-link a:active {
+    color: blue;
+}
+
+.txt-center {
+    text-align: center;
+}
+.hide {
+display: none;
+}
+
+.clear {
+float: none;
+clear: both;
+}
+
+.rating {
+    width: 45%;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+    transform:scale(2);
+}
+
+.rating > label {
+    float: right;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    color:gold;
+}
+
+.boxy {
+    position: fixed;
+    left: 350px;
+    padding: 0;
+    margin: 0;
+}
+
+.left { 	
+    display: inline-block;
+    float: left;
+}
+
+.right {
+    display: inline-block;
+    float: right;
+}
