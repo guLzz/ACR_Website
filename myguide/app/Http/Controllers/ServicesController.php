@@ -21,7 +21,7 @@ class ServicesController extends Controller
         $now = new DateTime();
         $events_type_live = DB::table('events')
                     ->where('events_type_type', '=', $type)
-                    ->where('date', '>', $now)
+                    //->where('date', '>', $now)
                     ->orderBy('date', 'ASC')
                     ->get();
         $type_id = DB::table('events_type')->where('type' ,'=', $type)->pluck('id')->first();

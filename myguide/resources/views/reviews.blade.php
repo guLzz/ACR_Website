@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+    <div class="text-center back-color">
         @if($user = Auth::user())
             @if(Auth::user()->role == 'User')
 				@if(!empty($events))
-					<h1 style="text-align: center;">Share your Thoughts</h1>
+					<h1 style="padding-top:20px;">Share your Thoughts</h1>
 					<form action="/reviews/" method = "POST" enctype="multipart/form-data" style="text-align: center;">
                         <input type="hidden" name="_token" value ="{{csrf_token()}}">
                         <div class="boxy">
@@ -37,7 +37,7 @@
 								<button type= "submit" style="float:right;"> Review Us </button>
 							</div>
 							<div class="right">
-								<table border="1">
+								<table>
 									<tr>
 										<td style="text-align:center;">									
 											<img src="" height="200" width="200" alt="Image preview">

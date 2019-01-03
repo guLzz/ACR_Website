@@ -1,27 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="text-align:center;">
-        @if (session('alert'))
-        <div class="alert alert-success">
-        @endif
-            {{ session('alert') }}
-        </div>
-    </div>
-    <div>
+    <div class="txt-center back-color">
         <div>
 			@if($user = Auth::user())
-            	@if(Auth::user()->role == 'Admin')
+                @if(Auth::user()->role == 'Admin')
+                        @if (session('alert'))
+                        <div class="alert alert-success">
+                        {{ session('alert') }}
+                        </div>
+                        @endif
                     <form action="/services/{type}/" method = "POST" enctype="multipart/form-data">	
-                        <table>                       									
+                        <table class="insert-table">                       									
                         <input type="hidden" name="_token" value ="{{csrf_token()}}">
                         <input type="hidden" name="type_id" value = "{{$type_id}}">
                         <input type="hidden" name="type_type" value = "{{$type_type}}">
 						<tr>
-                            <td>
+                            <td class="field-type">
                                 <p>Name:</p>
                             </td>
-                            <td colspan = "2">
+                            <td class="field-type">
                                 <input type="text" name = "name" required>
                             </td>
                         </tr>
@@ -113,16 +111,16 @@
             </script>
             
 		</div>
-		<div>
+		    <div>
 				@foreach($events as $event)  
 					<ul>
-                        <table>
-                            <tr><td rowspan = "6" style="text-align:center;"><img src="{{ asset('/images/events/'.$event->pic)}}" height="200" width="200" ></td>
+                        <table class="event-table">
+                            <tr><td rowspan = "6"><img src="{{ asset('/images/events/'.$event->pic)}}" height="200" width="200" ></td>
                             <tr><td><h1><strong> {{$event->name}} </strong></h1></td></tr>
                             <tr><td><h3> Max PAX: {{$event->nr_pax}} </h3></td></tr>
                             <tr><td><h3> Price: {{$event->price}} $ </h3></td></tr>
                             <tr><td><h3> Date: {{$event->date}} </h3></td></tr>
-                            <tr><td style="text-align:center;"><h3><a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a></h3></td></tr>
+                            <tr><td ><h3><a href="{{$event->events_type_type}}/{{$event->id}}"> More Info</a></h3></td></tr>
                         </table>
 					</ul>
 				@endforeach

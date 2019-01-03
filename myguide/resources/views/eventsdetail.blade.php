@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
-    <div>
+    <div class="txt-center back-color">
         <div>
             @foreach($events as $event)  
                 @if($user = Auth::user())
@@ -15,11 +14,13 @@
                         </form>
                     @endif
                 @endif 
-                <h1>  {{$event->name}}  </h1>
+                <h1 class="event-title">  {{$event->name}}  </h1>
                 <img src="{{ asset('/images/events/'.$event->pic)}}" >
+                <div class="event-info">
                 <h3>  {{$event->about}}  </h3>						
                 <h3> Current PAX:  {{count($current_pax)}} / {{$event->nr_pax}} </h3>
                 <h3> Price: {{$event->price}} $ / Pax </h3>
+                
                 @if(count($current_pax) < $event->nr_pax)
                     @if($user = Auth::user())
                         @if(Auth::user()->role == 'User')
@@ -39,6 +40,7 @@
                 @if(Auth::guest())
                     <h3>Login to Book your Activity!</h3>
                 @endif
+                </div>
             @endforeach			
 		</div>
     </div>

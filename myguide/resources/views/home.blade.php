@@ -1,14 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div>
-        <div>
+        <div class="txt-center back-color">
             @if(Auth::user()->role == 'User')
-                <h1 style="text-align: center;"> Track your events! </h1>
-				<div class="boxy">				
-					<div class="left">
-						<table border = "1" style="margin-left: auto;margin-right: auto;">
+                <h1 style="text-allign:center; padding-top: 20px;"> Track your events! </h1>
+				<div>				
+						<table class="boxy">
 								<tr>
 									<th>Atendeed Events</th>
 								</tr>
@@ -18,8 +15,6 @@
 								</tr>
 								@endforeach
 						</table>
-					</div>
-					<div class="right">
 						<table border = "1" style="margin-left: auto;margin-right: auto;">
 								<tr>
 									<th>Upcoming Events</th>
@@ -30,12 +25,11 @@
 								</tr>
 								@endforeach    
 						</table>
-					</div>
 				</div>
             @endif
 			@if(Auth::user()->role == 'Admin')
-				<h1 style="text-align: center;"> Track your next events! </h1>
-				<table border = "1" style="margin-left: auto;margin-right: auto;">
+				<h1 style="text-align: center; padding-top:20px;"> Track your next events! </h1>
+				<table class="admin-table">
 					<tr>
 						<th>Date</th>
 						<th>Event</th>
@@ -55,6 +49,5 @@
 				</table>
 			@endif
         </div>
-    </div>
 
 @endsection

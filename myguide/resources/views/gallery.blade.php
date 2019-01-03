@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="txt-center back-color">
     <div>
         @if($user = Auth::user())
             @if(Auth::user()->role == 'User' || Auth::user()->role == 'Admin')
                 @if(!empty($events))
-                    <h1>Share your Experiences with the World!</h1>
+                    <h1 style="padding-top:20px;">Share your Experiences with the World!</h1>
                     <form action="/gallery/" method = "POST" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value ="{{csrf_token()}}">
                         <select name = "events_id" id="" required> <!--seleciona o evento pretendido para avaliar-->
@@ -67,7 +68,7 @@
         @foreach($images as $image)
             <form action="/gallery/image/delete/" method = "POST" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value ="{{csrf_token()}}">
-                <table style="float:left">
+                <table class = "service-table">
                     <tr>
                         <td>
                             <img src="{{ asset('/images/gallery/'.$image->name)}}"  class="fancybox" height="200" width="200">
@@ -87,7 +88,5 @@
             </form>
         @endforeach
     </div>
-    <script>
-    
-    </script>
+</div>
 @endsection

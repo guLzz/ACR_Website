@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-		<div>
+		<div class="txt-center back-color">
             @if(!empty($events))
                 @if($user = Auth::user())
                     @if(Auth::user()->role == 'User')
                         <h1>Choose your Journey</h1>
-                            <table border = "1">
+                            <table class="event-table">
                                 <form action="/bundle/" method = "POST" enctype="multipart/form-data">
                                     <input type="hidden" name="_token" value ="{{csrf_token()}}">
                                     <?php $i=0;  ?>
@@ -40,15 +39,14 @@
                                 </form>
                             </table>
                     @else
-                        <h3>You Must be a User to Use this!!</h3>
+                        <h3 style="padding-top:20px;">You Must be a User to Use this!!</h3>
                     @endif
                 @else
-                    <h3>You Must be a User to Use this!! Please register</h3>
+                    <h3 style="padding-top:20px;">You Must be a User to Use this!! Please register</h3>
                 @endif
             @else
                 <h3>No Events to create a Bundle</h3>
             @endif
         </div>
-	</div>
 	
 @endsection

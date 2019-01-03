@@ -3,6 +3,10 @@ html, body {
     font-weight: 200;
     height: 100vh;
     margin: 0;
+    background-image: url("/images/utility/background.png");
+    background-color: #cccccc;
+    background-size:cover
+    
 }
 
 .full-height {
@@ -117,21 +121,143 @@ clear: both;
 }
 
 .boxy {
-    position: fixed;
-    left: 350px;
+    background: rgba(128, 128, 128, 0.651);
+    border:1px solid black;
+    margin:auto;
+    min-width: 80%;
+    max-width: 80%;
     padding: 0;
     margin: 0;
 }
 
 .left { 	
-    display: inline-block;
-    float: left;
+ 
 }
 
 .right {
-    display: inline-block;
-    float: right;
+   
 }
 
-  
+.back-color {
+    background-color: rgba(255, 255, 255, 0.589);
+    top: 0;
+    max-width: 80vw;
+    min-width: 80vw;
+    margin-top:0px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    min-height: 90vh;
+    margin-bottom: 10px
+}
 
+.image-line{
+    padding: 10px;
+}
+
+.insert-table{
+    border-collapse: collapse;
+    background: rgba(128, 128, 128, 0.651);
+    padding: 10px;
+    margin:auto;
+}
+
+.insert-table td{
+    border:1px solid black;
+}
+.insert-table tr{
+    border:1px solid black;
+    border:1px solid black;
+    height: 50px;
+    min-height: 240px;
+    max-height: 240px;
+}
+
+.admin-table{
+    border-collapse: collapse;
+    background: rgba(128, 128, 128, 0.651);
+    padding: 10px;
+    margin:auto;
+}
+
+.admin-table th{
+    border:1px solid black;
+    font-size:15px;
+}
+
+.admin-table td{
+    border:1px solid black;
+    min-width: 200px;
+    color:white;
+}
+
+.admin-table tr{
+    border:1px solid black;
+    border:1px solid black;
+    height: 50px;
+    min-height: 240px;
+    max-height: 240px;
+}
+
+.field-type{
+    padding-top:20px;
+    font-size:20px;
+    min-width: 220px;
+    vertical-align: top 
+}
+
+.service-table {
+    margin:auto;
+    min-width: 80%;
+}
+
+.service-table tr{
+    min-height: 240px;
+    max-height: 240px;
+}
+
+.service-table td{
+    padding:20px;
+    min-width: 200px;
+    max-width: 220px;
+    vertical-align: top 
+}
+
+.table-link:link,
+.table-link:visited,
+.table-link:active,
+.table-link:hover{
+    color:blue;
+}
+
+.event-table{
+    margin:auto;
+    min-width: 80%;
+    max-width: 80%;
+    border: 1px solid black;
+    background: rgba(128, 128, 128, 0.651);
+}
+
+.event-table h1{
+    font-size:30px;
+    font-weight: bold;
+}
+
+.event-table h3{
+    font-size:20px;
+}
+
+.event-table a:link,
+a:active, a:visited{
+    color:blue;
+}
+
+.event-title {
+    color:black;
+    font-size:75px;
+    font-weight: bold;
+}
+
+.event-info {
+    color:black;
+    font-size:30px;
+}

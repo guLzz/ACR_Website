@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+    <div class="text-center back-color">
 		<div>
 			<h1>Who are we</h1>
 			<div>   
