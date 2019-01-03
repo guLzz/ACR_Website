@@ -181,6 +181,7 @@ clear: both;
 
 .admin-table th{
     border:1px solid black;
+    min-width: 200px;
     font-size:15px;
 }
 
@@ -248,7 +249,7 @@ clear: both;
 
 .event-table a:link,
 a:active, a:visited{
-    color:blue;
+    color:whitesmoke;
 }
 
 .event-title {

@@ -6,9 +6,9 @@
                 @if($user = Auth::user())
                     @if(Auth::user()->role == 'User')
                         <h1>Choose your Journey</h1>
-                            <table class="event-table">
-                                <form action="/bundle/" method = "POST" enctype="multipart/form-data">
-                                    <input type="hidden" name="_token" value ="{{csrf_token()}}">
+                            <form action="/bundle/" method = "POST" enctype="multipart/form-data">
+                                <table class="event-table">    
+                                   <input type="hidden" name="_token" value ="{{csrf_token()}}">
                                     <?php $i=0;  ?>
                                     @foreach($events as $type)
                                         <tr>
@@ -35,9 +35,9 @@
                                     <tr>
                                         <td colspan = "2"><button type= "submit"> Check-in </button></td>
                                     </tr>
-                                    
+                                    </table>        
                                 </form>
-                            </table>
+                            
                     @else
                         <h3 style="padding-top:20px;">You Must be a User to Use this!!</h3>
                     @endif
