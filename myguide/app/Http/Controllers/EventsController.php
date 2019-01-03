@@ -66,4 +66,14 @@ class EventsController extends Controller
         DB::table('events')->delete($request->event_id);
         return redirect("/services/{$request->type_name}");
     }
+
+    public function eventsAPI()
+    {
+        $now = new DateTime();
+        $events = DB::table('events')
+                ->select('id','events_type_type','name','price','nr_pax','about','date')
+                ->where('date','>',$now)->get();
+
+        return response()->json($events);
+    }
 }

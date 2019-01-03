@@ -34,6 +34,10 @@ class Event extends Model
     {
         return $this->hasMany(Gallery::class);
     }
+    public function bundles()
+    {
+        return $this->belongsToMany(Bundle::class, 'users_events');
+    }
 
 
 

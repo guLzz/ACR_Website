@@ -28,6 +28,7 @@ class BundleController extends Controller
             $query = DB::table('users_events')
                         ->where('event_id','=',$value)
                         ->count();
+            //return $query;
             if($query > -1) 
                 array_push($current_pax, $query);
         }
@@ -53,15 +54,15 @@ class BundleController extends Controller
     {    
         $user = Auth::user();
         $checkboxes = $request->event_id;
-        //for ($i = 1; $i <= $request->number_pax; $i++) {
-            foreach($checkboxes as $checkbox)
-            {
-                if ($user) {
-                    $event = Event::find($checkbox);
-                    $user->events()->attach($checkbox);          
-                }
+        
+        foreach($checkboxes as $checkbox)
+        {
+            if ($user) {
+                $event = Event::find($checkbox);
+                $user->events()->attach($checkbox);          
             }
-        //}
+        }
+        
         
         //return redirect("/bundle/");
 		return redirect("/home");
