@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="text-center back-color">
+    <div>
         @if($user = Auth::user())
             @if(Auth::user()->role == 'User')
 				@if(!empty($events))
@@ -133,5 +134,6 @@
                     <tr><td colspan="2"><textarea readonly class = "textarea-readable"> {{$review->reviewtext}} </textarea></td></tr>						
             </ul>
         @endforeach		
+    </div>
     </div>
 @endsection
